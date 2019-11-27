@@ -1,0 +1,35 @@
+{
+    "airports": [
+        {
+            "name": "Laguadria Airport",
+            "code": "LGA",
+            "location": "New York City",
+            "state": "New York"
+        },
+        {
+            "name": "Los Angeles International Airport",
+            "code": "LAX",
+            "location": "Los Angeles",
+            "state": "California"
+        },
+        {
+            "name": "George Bush Intercontinental Airport",
+            "code": "IAH",
+            "location": "Houston",
+            "state": "Texas"
+        },
+        {
+            "name": "McCarran International Airport",
+            "code": "LAS",
+            "location": "Las Vegas",
+            "state": "Nevada" 
+        },
+        {
+            "name": "O'Hare International Airport",
+            "code": "ORD",
+            "location": "Chicago",
+            "state": "Illinois"
+        }
+
+    ]
+}
