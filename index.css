@@ -1,0 +1,122 @@
+.navbar-light {
+    line-height: 65px;
+    height: 65px;
+    padding-top: 0;
+}
+
+
+.navbar .search-container {
+    padding: 0;
+    text-align: center;
+    transform: translateY(-95%);
+}
+
+.navbar .search-container input {
+    height: 35px;
+    width: 300px;
+}
+
+.navbar .navbar-brand {
+    line-height: 50px;
+    padding: 0px;
+    transform: translateY(-35%);
+    
+}
+
+.navbar .navbar-brand .logo{
+    transform: translateX(-25%);
+    text-align: center;
+}
+
+.welcome-paragraph {
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 300px;
+    color: white;
+    transform: translateX(2%);
+}
+
+.log-sign-div .login-signup-p {
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 150px;
+  color: white;
+}
+
+
+body {
+    background-image: url("images/runway.jpg");
+    background-size: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(0, 0, 0);
+  }
+
+  
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .airline-btns .delta-btn:hover .overlay {
+    opacity: 95%;
+  }
+
+  .airline-btns .jetblue-btn:hover .overlay {
+    opacity: 95%;
+  }
+
+  .airline-btns .united-btn:hover .overlay {
+    opacity: 95%;
+  }
+
+
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+
+.airline-btns .delta-btn  {
+    position: relative;
+    width: 200;
+    float: left;
+}
+
+.airline-btns .jetblue-btn {
+    position: relative;
+    width: 200;
+    margin-left: 5%;
+    float: left;
+}
+
+.airline-btns .united-btn {
+    position: relative;
+    width: 200;
+    margin-left: 5%;
+    float: left;
+}
+
+.log-sign-div {
+  background-color: rgb(20,39,126,0.8);
+  border: 5px solid rgb(20,39,126);
+  position:absolute;
+  top: 15%;
+  right: 2%;
+}
