@@ -1,67 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
     <title>Book flights with AirBook</title>
     <nav class="navbar navbar-light" style="background-color: #14277e;">
-            <a class="navbar-brand" href="#">
-              <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="194" height="186" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
-            </a>
-            <div class="search-container">
-                    <form action="#">
-                      <input type="text" placeholder="Search by location..." name="search">
-                      <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Search</button>
-                    </form>
-                </div>
+        <a class="navbar-brand" href="#">
+            <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="194" height="186" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
+        </a>
+        <div class="search-container">
+            <form action="#">
+                <input type="text" placeholder="Search by location..." name="search">
+                <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i> Search</button>
+            </form>
+        </div>
     </nav>
 </head>
+
 <body>
-  <h1 style="color: black">Book with AirBook.</h1>
-  <p class="welcome-paragraph">AirBook is a convenient way to book/reserve flights! Search by location on the top right, or choose an Airline below!</p>
-
-<br><br>
-<h3 style="color:black">Search by Airline</h3>
-<div class="airline-btns">
-  
-  <div class="delta-btn">
-    <a href="#d">
-      <img src="images/delta.jpg" alt="Delta Airlines" width=200 height=100 >
-      <div class="overlay">
-          <div class="text">Delta</div>
-      </div>
-    </a>
-  </div>
-
-  <div class="jetblue-btn">
-    <a href="#j">
-        <img src="images/jetblue.jpg" alt="Jetblue Airlines" width=200 height=100 >
-        <div class="overlay">
-            <div class="text">JetBlue</div>
+    <h1 style="color: black">Book with AirBook.</h1>
+    <p class="welcome-paragraph">AirBook is a convenient way to book/reserve flights! Search by location on the top right, or choose an Airline below!</p>
+    <br><br>
+    <h3 style="color:black">Search by Airline</h3>
+    <div class="airline-btns">
+        <div class="delta-btn">
+            <a href="#d">
+                <img src="images/delta.jpg" alt="Delta Airlines" width=200 height=100>
+                <div class="overlay">
+                    <div class="text">Delta</div>
+                </div>
+            </a>
         </div>
-    </a>
-  </div>
-
-  <div class="united-btn">
-      <a href="#u">
-          <img src="images/united.jpg" alt="United Airlines" width=200 height=100 >
-          <div class="overlay">
-              <div class="text">United</div>
-          </div>
-      </a>
+        <div class="jetblue-btn">
+            <a href="#j">
+                <img src="images/jetblue.jpg" alt="Jetblue Airlines" width=200 height=100>
+                <div class="overlay">
+                    <div class="text">JetBlue</div>
+                </div>
+            </a>
+        </div>
+        <div class="united-btn">
+            <a href="#u">
+                <img src="images/united.jpg" alt="United Airlines" width=200 height=100>
+                <div class="overlay">
+                    <div class="text">United</div>
+                </div>
+            </a>
+        </div>
     </div>
-</div>
 
-<div class="log-sign-div">
-  <div class="login-div">
-      <p class="login-signup-p">Log in to book/view your flights: </p>
-      <button class="btn btn-danger">Login</button>
-  </div>
-  <div class="signup-div">
-      <p class="login-signup-p">New here? Create an account now!</p>
-      <button class="btn btn-danger">Sign Up</button>
-  </div>
-</div>
+    <!-- Flight Booking Form  -->
 
+    <div class="booking-form-box">
+
+        <div class="radio-btn">
+            <input type="radio" class="btn" name="check" checked="checked"><span>Roundtrip</span>
+            <input type="radio" class="btn" name="check"><span>One Way</span>
+        </div>
+
+        <div class="booking-form">
+          
+            <label>Flying From</label>
+            <input type="text" class="form-control" placeholder="City or Airport">
+            <label>Flying To</label>
+            <input type="text" class="form-control" placeholder="City or Airport">
+            <div class="input-grp">
+                <label>Departing</label>
+                <input type="date" class="form-control select-date">
+            </div>
+            <div class="input-grp">
+                <label>Returning</label>
+                <input type="date" class="form-control select-date">
+            </div>
+            <div class="input-grp">
+                <label>Passengers</label>
+                <input type="number" class="form-control" value="1">
+            </div>
+            <div class="input-grp">
+                <button type="button" class="btn btn-primary flight">Show Flights</button>
+            </div>
+        </div>
+    </div>
+    <div class="log-sign-div">
+        <div class="login-div">
+            <p class="login-signup-p">Log in to book/view your flights: </p>
+            <button class="btn btn-danger">Login</button>
+        </div>
+        <div class="signup-div">
+            <p class="login-signup-p">New here? Create an account now!</p>
+            <button class="btn btn-danger">Sign Up</button>
+        </div>
+    </div>
 </body>
+
 </html>
