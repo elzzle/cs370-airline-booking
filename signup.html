@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <link rel="stylesheet" href="styles.css">
+     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
+     <title>Sign up for AirBook</title>
+
+     <nav class="navbar navbar-light" style="background-color: #14277e;">
+        <a class="navbar-brand" href="index.html">
+                <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
+        </a>
+        <div class="logsign-container">
+            <a class="btn btn-danger" href="login.html">Login</a>
+            <a class="btn btn-danger" href="signup.html">Sign Up</a>
+        </div>
+     </nav>
+    </head>
+    <body>
+        <form class="login-form">
+            <div class="signup-container">
+                <h1>Sign up for AirBook</h1>
+                <p>Please fill out this form to create an account.</p>
+                <hr>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter email..." name="email" required>
+                <br>
+                <br>
+                <label for="pw"><b>Password</b></label>
+                <input type="text" placeholder="Enter password..." name="pw" required>
+                <br>
+                <br>
+                <label for="cpw"><b>Confirm Password</b></label>
+                <input type="text" placeholder="Enter password again..." name="cpw" required>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-danger">Sign Up</button>
+                <br>
+            </div>
+
+        </form>
+    </body>
+
+
+</html>

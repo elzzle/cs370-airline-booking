@@ -1,0 +1,19 @@
+{
+  "name": "370-airline",
+  "version": "1.0.0",
+  "description": "Airline booking system for CS370. Plan: Using HTML/CSS/JS for frontend, using firebase for DB, and using (most likely) python for backend.",
+  "main": "backend/fb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elzzle/cs370-airline-booking.git"
+  },
+  "author": "Emanuel Mamadou Arhum",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elzzle/cs370-airline-booking/issues"
+  },
+  "homepage": "https://github.com/elzzle/cs370-airline-booking#readme"
+}
