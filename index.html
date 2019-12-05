@@ -14,6 +14,19 @@
             <a class="btn btn-danger" href="signup.html">Sign Up</a>
         </div>
     </nav>
+
+<!-- Enable/Disable Return field when One Way tickets are selected -->
+
+    <script type="text/javascript">
+        function disableReturn(x) {
+            if(x==0) {
+                document.getElementById('oneWay').style.display='block'
+            } else {
+                document.getElementById('oneWay').style.display='none'
+            }
+            return;
+        }
+    </script>
 </head>
 
 <body>
@@ -54,8 +67,8 @@
             <p class="booking-p">Find your desired flight below!</p>
 
         <div class="radio-btn">
-            <input type="radio" class="btn" name="check" checked="checked"><span>Roundtrip</span>
-            <input type="radio" class="btn" name="check"><span>One Way</span>
+            <input type="radio" class="btn" name="check" checked="checked" onclick="disableReturn(0)"><span>Roundtrip</span>
+            <input type="radio" class="btn" name="check" onclick="disableReturn(1)"><span>One Way</span>
         </div>
 
         <div class="booking-form">
@@ -65,12 +78,14 @@
             <label>Flying To</label>
             <input type="text" class="form-control" placeholder="City or Airport">
             <div class="input-grp">
-                <label>Departing</label>
+                <label>Depart</label>
                 <input type="date" class="form-control select-date">
             </div>
             <div class="input-grp">
-                <label>Returning</label>
+                <div id="oneWay">
+                <label>Return</label>
                 <input type="date" class="form-control select-date">
+            </div>
             </div>
             <div class="input-grp">
                 <label>Passengers</label>
