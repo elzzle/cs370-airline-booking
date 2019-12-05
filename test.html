@@ -13,12 +13,32 @@
         <p>Success</p>
         <br>
         <button class="btn btn-danger" id="logout-btn">Log Out</button>
+        <br>
+        <button class="btn btn-danger" id="json-btn">Log JSON data</button>
+        <script src="backend/fb.js"></script>
         <script>
+
             $("#logout-btn").click(function(){
                 firebase.auth().signOut();
                 window.location.href="login.html"
              });
 
+             var flights;
+             /*this function is retrieving the JSON data, and inside the function it's
+             storing all of the data into the "flights" var that was declared above.*/
+             $.getJSON("flights.json", function(json) {
+                //console.log(json.flights[3]); // show the JSON file content into console
+                flights=json.flights;
+            });
+
+
+            /*JSON works like an array, you can check if something matches by doing what
+            was done below.*/
+             $("#json-btn").click(function(){
+                for (var i = 0; i < flights.length; i++) {
+                    if(flights[i].airline == "Delta Airlines") console.log(flights[i]);
+                }
+        });
         </script>
     </head>
 </html>

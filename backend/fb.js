@@ -8,6 +8,9 @@ var firebaseConfig = {
     appId: "1:256822869010:web:78228e51da8972439caccb",
     measurementId: "G-6F8XLZNEFW"
   };
+
+  var flights;
+
   // Initialize Firebase
   if (!firebase.apps.length) {
     if(firebase.initializeApp(firebaseConfig)) console.log("success");
@@ -43,23 +46,37 @@ $("#login-btn").click(function(){
   }
   else window.alert("Please fill out all fields.")
 });
-  /*var loginBtn = document.getElementById("login-btn");
-  loginBtn.addEventListener('click', e  => {
-    var loginEmail = document.getElementById("login-email").value();
-    var loginPw = document.getElementById("login-pw").value();
+ 
+$("#signup-btn").click(function(){
+    
+  var signupEmail = $("#signup-email").val();
+  var signupPw= $("#signup-pw").val();
+  console.log(signupEmail + " " + signupPw)
 
-    if(loginEmail!="" && loginPw!=""){
-      var result = firebase.auth().signInWithEmailAndPassword(loginEmail, loginPw);
-      result.catch(function(error){ 
-          var errMsg = error.message;
-          console.log(errMsg);
-      });
+  if(signupEmail!="" && signupPw!=""){
+    firebase.auth().createUserWithEmailAndPassword(signupEmail, signupPw)
+    .then(user => {
+      window.location.href="test2.html"
+    })
+    .catch(function(error){ 
+        var errMsg = error.message;
+        console.log(errMsg);
+    });
   }
-  else window.alert("Please fill out all fields.")
-  });*/
+  else window.alert("Please fill out all fields.");
+});
 
   $("#logout-btn").click(function(){
     firebase.auth().signOut();
     window.location.href="login.html"
   });
+  
+  $("#json-btn").click(function(){
+    $.getJSON("flights.json", function(json) {
+    //console.log(json.flights[3]); // show the JSON file content into console
+    flights=json.flights;
+    console.log(flights);
+  });
+
+ });
 
