@@ -9,8 +9,6 @@ var firebaseConfig = {
     measurementId: "G-6F8XLZNEFW"
   };
 
-  var flights;
-
   // Initialize Firebase
   if (!firebase.apps.length) {
     if(firebase.initializeApp(firebaseConfig)) console.log("success");
@@ -71,12 +69,20 @@ $("#signup-btn").click(function(){
     window.location.href="login.html"
   });
   
-  $("#json-btn").click(function(){
+  var flights;
+    /*this function is retrieving the JSON data, and inside the function it's
+    storing all of the data into the "flights" var that was declared above.*/
     $.getJSON("flights.json", function(json) {
-    //console.log(json.flights[3]); // show the JSON file content into console
-    flights=json.flights;
-    console.log(flights);
+      //console.log(json.flights[3]); // show the JSON file content into console
+      flights=json.flights;
   });
 
- });
+
+  /*JSON works like an array, you can check if something matches by doing what
+  was done below.*/
+    $("#json-btn").click(function(){
+      for (var i = 0; i < flights.length; i++) {
+          if(flights[i].airline == "Delta Airlines") console.log(flights[i]);
+      }
+    });
 

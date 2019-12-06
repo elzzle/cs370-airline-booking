@@ -23,22 +23,22 @@
                 window.location.href="login.html"
              });
 
-             var flights;
+            //var flights;
              /*this function is retrieving the JSON data, and inside the function it's
              storing all of the data into the "flights" var that was declared above.*/
-             $.getJSON("flights.json", function(json) {
+             /*$.getJSON("flights.json", function(json) {
                 //console.log(json.flights[3]); // show the JSON file content into console
                 flights=json.flights;
-            });
+            });*/
 
 
             /*JSON works like an array, you can check if something matches by doing what
             was done below.*/
-             $("#json-btn").click(function(){
+             /*$("#json-btn").click(function(){
                 for (var i = 0; i < flights.length; i++) {
                     if(flights[i].airline == "Delta Airlines") console.log(flights[i]);
                 }
-        });
+        });*/
         </script>
     </head>
 </html>

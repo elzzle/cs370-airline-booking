@@ -234,3 +234,10 @@ input::placeholder {
 .signup-container input{
   align-self: center;
 }
+
+.airline-page-result {
+  color: white;
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 600px;
+  border: 1px solid white;
+}

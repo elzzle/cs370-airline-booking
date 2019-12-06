@@ -4,14 +4,23 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
+    <script src="backend/fb.js"></script>
     <title>Book flights with AirBook</title>
     <nav class="navbar navbar-light" style="background-color: #14277e;">
         <a class="navbar-brand" href="index.html">
             <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
         </a>
         <div class="logsign-container">
-            <a class="btn btn-danger" href="login.html">Login</a>
-            <a class="btn btn-danger" href="signup.html">Sign Up</a>
+            <a id="loginBtn" class="btn btn-danger" href="login.html">Login</a>
+            <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
+            <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
         </div>
     </nav>
 
@@ -26,6 +35,24 @@
             }
             return;
         }
+        //logs user out
+        function logOutUser(){
+            firebase.auth().signOut();
+            window.location.href="index.html"
+        }
+        //checks if user is logged in and diplays the buttons on the nav accordingly
+        firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                document.getElementById('loginBtn').style.display='none';
+                document.getElementById('signupBtn').style.display='none';
+                document.getElementById('logoutBtn').style.display='block';
+            }
+            else {
+                document.getElementById('loginBtn').style.display='inline';
+                document.getElementById('signupBtn').style.display='inline';
+                document.getElementById('logoutBtn').style.display='none';
+            }
+        });
     </script>
 </head>
 
@@ -36,7 +63,7 @@
     <h3 style="color:black">Search by Airline</h3>
     <div class="airline-btns">
         <div class="delta-btn">
-            <a href="#d">
+            <a href="deltaflights.html">
                 <img src="images/delta.jpg" alt="Delta Airlines" width=200 height=100>
                 <div class="overlay">
                     <div class="text">Delta</div>
@@ -92,7 +119,7 @@
                 <input type="number" class="form-control" value="1">
             </div>
             <div class="input-grp">
-                <button type="button" class="btn btn-primary flight">Show Flights</button>
+                <button id="searchBtn" type="button" class="btn btn-primary flight">Show Flights</button>
             </div>
         </div>
     </div>
