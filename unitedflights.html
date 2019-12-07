@@ -72,17 +72,22 @@
                     if(flights[i].airline=="United Airlines" && flights[i].sourceAirport=="JFK"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
+                        const flightNumber = flights[i].number;
                         var resultID = jfkResultID + ++jfkResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
-                        bookBtn.setAttribute("class", "btn btn-danger")
+                        bookBtn.setAttribute("class", "btn btn-danger");
+                        bookBtn.onclick=function(){
+                            bookFlight(flightNumber);
+                        }
+                        //bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        result.appendChild(bookBtn);
+                        /*if(firebase.auth().currentUser!=null)*/ result.appendChild(bookBtn);
                         jfkDiv.appendChild(result);
                         jfkDiv.appendChild(hr1);
                     }
@@ -95,17 +100,22 @@
                     if(flights[i].airline=="United Airlines" && flights[i].sourceAirport=="ORD"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
+                        const flightNumber = flights[i].number;
                         var resultID = ordResultID + ++ordResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
-                        bookBtn.setAttribute("class", "btn btn-danger")
+                        bookBtn.setAttribute("class", "btn btn-danger");
+                        bookBtn.onclick=function(){
+                            bookFlight(flightNumber);
+                        }
+                        //bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        result.appendChild(bookBtn);
+                        /*if(firebase.auth().currentUser!=null)*/ result.appendChild(bookBtn);
                         ordDiv.appendChild(result);
                         ordDiv.appendChild(hr1);
                     }
@@ -118,18 +128,22 @@
                     if(flights[i].airline=="United Airlines" && flights[i].sourceAirport=="LAX"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
+                        const flightNumber = flights[i].number;
                         var resultID = laxResultID + ++laxResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
-                        bookBtn.onclick = bookFlight(flights[i].number);
+                        //bookBtn.onclick = bookFlight(flights[i].number);
+                        bookBtn.onclick=function(){
+                            bookFlight(flightNumber);
+                        }
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        result.appendChild(bookBtn);
+                        /*if(firebase.auth().currentUser!=null) */result.appendChild(bookBtn);
                         laxDiv.appendChild(result);
                         laxDiv.appendChild(hr1);
                     }
@@ -137,13 +151,16 @@
             });
 
             function bookFlight(flightNum){
-                if(firebase.auth().currentUser!=null){
-                    console.log(firebase.firestore().collection('users').where('uid', '==', firebase.auth().currentUser.uid));
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        // User is signed in.
+                        console.log(flightNum);
+                    } else {
+                        // No user is signed in.
+                        window.alert("You must be logged in to book a flight.");
+                    }
+                    });
                 }
-                else{
-                    window.alert("You must be signed in to book a fuck.")
-                }
-            }
 
         </script>
     </head>
