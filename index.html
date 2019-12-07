@@ -92,35 +92,49 @@
 
     <div class="booking-form-box">
             <p class="booking-p">Find your desired flight below!</p>
-
+         <form method="POST" action="#">
         <div class="radio-btn">
+
             <input type="radio" class="btn" name="check" checked="checked" onclick="disableReturn(0)"><span>Roundtrip</span>
             <input type="radio" class="btn" name="check" onclick="disableReturn(1)"><span>One Way</span>
         </div>
 
         <div class="booking-form">
-            
-            <label>Flying From</label>
-            <input type="text" class="form-control" placeholder="Departure">
-            <label>Flying To</label>
-            <input type="text" class="form-control" placeholder="Destination">
-            <div class="input-grp">
-                <label>Depart</label>
-                <input type="date" class="form-control select-date">
-            </div>
-            <div class="input-grp">
-                <div id="oneWay">
-                <label>Return</label>
-                <input type="date" class="form-control select-date">
-            </div>
-            </div>
-            <div class="input-grp">
-                <label>Passengers</label>
-                <input type="number" class="form-control" value="1">
-            </div>
-            <div class="input-grp">
-                <button id="searchBtn" type="button" class="btn btn-primary flight">Show Flights</button>
-            </div>
+                <label>Flying From</label>
+                <select type="text" name="depart" class="form-control">
+                    <option value="0" disabled="disabled" selected="selected">Leaving From...</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="1">JFK (New York)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="2">ORD (Chicago)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="3">LAX (Los Angeles)</option>
+                </select>
+
+                <label>Flying To</label>
+                <select type="text" name="destination" class="form-control">
+                    <option value="0" disabled="disabled" selected="selected">Going To...</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="1">JFK (New York)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="2">ORD (Chicago)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="3">LAX (Los Angeles)</option>
+                </select>
+
+                <div class="input-grp">
+                    <label>Depart</label>
+                    <input type="date" class="form-control select-date">
+                </div>
+                <div class="input-grp">
+                    <div id="oneWay">
+                    <label>Return</label>
+                    <input type="date" class="form-control select-date">
+                </div>
+                </div>
+                <div class="input-grp">
+                    <label>Passengers</label>
+                    <input type="number" class="form-control" value="1">
+                </div>
+                <div class="input-grp">
+                    <input id="searchBtn" class="btn btn-primary flight" type="submit" value="Show Flights">
+                    <!-- <button id="searchBtn" type="button" class="btn btn-primary flight">Show Flights</button> -->
+                </div>
+            </form>
         </div>
     </div>
 </body>
