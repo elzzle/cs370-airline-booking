@@ -7,6 +7,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
@@ -120,7 +121,8 @@
                         var resultID = laxResultID + ++laxResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
-                        bookBtn.setAttribute("class", "btn btn-danger")
+                        bookBtn.setAttribute("class", "btn btn-danger");
+                        bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
@@ -132,9 +134,16 @@
                         laxDiv.appendChild(hr1);
                     }
                 }
-
-
             });
+
+            function bookFlight(flightNum){
+                if(firebase.auth().currentUser!=null){
+                    console.log(firebase.firestore().collection('users').where('uid', '==', firebase.auth().currentUser.uid));
+                }
+                else{
+                    window.alert("You must be signed in to book a fuck.")
+                }
+            }
 
         </script>
     </head>

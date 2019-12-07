@@ -9,6 +9,7 @@ var firebaseConfig = {
     measurementId: "G-6F8XLZNEFW"
   };
 
+
   // Initialize Firebase
   if (!firebase.apps.length) {
     if(firebase.initializeApp(firebaseConfig)) console.log("success");
@@ -54,7 +55,25 @@ $("#signup-btn").click(function(){
   if(signupEmail!="" && signupPw!=""){
     firebase.auth().createUserWithEmailAndPassword(signupEmail, signupPw)
     .then(user => {
-      window.location.href="test2.html"
+       // window.location.href="test2.html"
+      //console.log(firebase.auth().currentUser.uid);
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          console.log(user);
+          var userUID = firebase.auth().currentUser.uid;
+          //var db = firebase.firestore;
+
+          firebase.firestore().collection('users').doc(userUID).set({
+          email: signupEmail,
+          password: signupPw,
+          flightsBooked: []
+          });
+          
+          // User is signed in.
+        } else {
+          // No user is signed in.
+        }
+      });
     })
     .catch(function(error){ 
         var errMsg = error.message;
