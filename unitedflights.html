@@ -154,8 +154,30 @@
                 firebase.auth().onAuthStateChanged(function(user) {
                     if (user) {
                         // User is signed in.
-                        console.log(flightNum);
-                    } else {
+                        //console.log(flightNum);
+                        var db = firebase.firestore();
+                        var user = firebase.auth().currentUser;
+                        var uid= user.uid;
+                        var usersEmail = user.email;
+                        db.collection("users").where("email", "==", usersEmail)
+                                .get()
+                                .then(function(querySnapshot) {
+                                    querySnapshot.forEach(function(doc) {
+                                        // doc.data() is never undefined for query doc snapshots
+                                        var data=doc.data();
+                                        var userFlights = data.flightsBooked;
+                                        userFlights.push(flightNum);
+                                        db.collection("users").doc(uid).update({
+                                            "flightsBooked": userFlights
+                                        })
+                                        console.log(userFlights);
+                                    });
+                                })
+                                .catch(function(error) {
+                                    console.log("Error getting documents: ", error);
+                                });
+                                
+                            } else {
                         // No user is signed in.
                         window.alert("You must be logged in to book a flight.");
                     }
