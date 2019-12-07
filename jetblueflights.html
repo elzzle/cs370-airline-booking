@@ -24,10 +24,10 @@
             </div>
         </nav>
         <style>
-            .delta-page-result {
+            .jetblue-page-result {
                 text-align: center;
                 color: white;
-                background: url("images/delta.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
+                background: url("images/jetblue.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
                 background-size: 10%;
                 width: 90%;
                 margin-left: 5%;
@@ -68,12 +68,12 @@
                 the for loop is creating the search divs and then appending it to the parent
                 div constructed in the HTML body.*/
                 for(var i=0; i<flights.length; i++){
-                    if(flights[i].airline=="Delta Airlines" && flights[i].sourceAirport=="JFK"){
+                    if(flights[i].airline=="Jetblue" && flights[i].sourceAirport=="JFK"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
                         var resultID = jfkResultID + ++jfkResultCounter;
                         result.setAttribute("id", resultID);
-                        result.setAttribute("class", "delta-page-result");
+                        result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger")
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
@@ -91,12 +91,12 @@
                 var ordResultCounter=0;
                 const ordResultID="ord-result-"
                 for(var i=0; i<flights.length; i++){
-                    if(flights[i].airline=="Delta Airlines" && flights[i].sourceAirport=="ORD"){
+                    if(flights[i].airline=="Jetblue" && flights[i].sourceAirport=="ORD"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
                         var resultID = ordResultID + ++ordResultCounter;
                         result.setAttribute("id", resultID);
-                        result.setAttribute("class", "delta-page-result");
+                        result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger")
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
@@ -114,12 +114,12 @@
                 var laxResultCounter=0;
                 const laxResultID="lax-result-"
                 for(var i=0; i<flights.length; i++){
-                    if(flights[i].airline=="Delta Airlines" && flights[i].sourceAirport=="LAX"){
+                    if(flights[i].airline=="Jetblue" && flights[i].sourceAirport=="LAX"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
                         var resultID = laxResultID + ++laxResultCounter;
                         result.setAttribute("id", resultID);
-                        result.setAttribute("class", "delta-page-result");
+                        result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger")
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
@@ -139,7 +139,7 @@
         </script>
     </head>
     <body>
-        <h1 style="color: white">Delta Airlines Flights:</h1>
+        <h1 style="color: white">JetBlue Flights:</h1>
         <div id="jfk-flights">
             <h1 style="color:white">JFK (New York City, New York) Flights:</h1>
         </div>
