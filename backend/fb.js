@@ -58,8 +58,7 @@ $("#signup-btn").click(function(){
           firebase.firestore().collection('users').doc(userUID).set({
           email: signupEmail,
           password: signupPw,
-          flightsBooked: [],
-          flightsCanceled: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
+          flightsBooked: []
           });
           window.location.href="index.html"
           

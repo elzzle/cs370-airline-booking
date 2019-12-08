@@ -170,22 +170,15 @@
                                         // doc.data() is never undefined for query doc snapshots
                                         var data=doc.data();
                                         var userFlights = data.flightsBooked;
-                                        var canceledFlights = data.flightsCanceled;
                                         for(var i=0; i<userFlights.length; i++){
-                                            if(userFlights[i]==flightNum && canceledFlights[flightNum]==false){
+                                            if(userFlights[i]==flightNum){
                                                 window.alert("You have already booked this flight.");
                                                 return;
                                             }
                                         }
-                                        if(userFlights.length==0) userFlights.push(flightNum);
-                                        else for(var i=0; i<userFlights.length; i++){
-                                            if(userFlights[i]==flightNum) break;
-                                            else if(i==userFlights.length-1 && userFlights[i]!=flightNum) userFlights.push(flightNum);
-                                        }
-                                        canceledFlights[flightNum] = false;
+                                        userFlights.push(flightNum);
                                         db.collection("users").doc(uid).update({
                                             "flightsBooked": userFlights,
-                                            "flightsCanceled": canceledFlights
                                         })
                                         console.log(userFlights);
                                     });

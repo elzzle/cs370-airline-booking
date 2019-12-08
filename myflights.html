@@ -99,10 +99,9 @@
                                     // doc.data() is never undefined for query doc snapshots
                                     var data=doc.data();
                                     var userFlights = data.flightsBooked;
-                                    var canceledFlights = data.flightsCanceled;
                                     for(var i=0; i<userFlights.length; i++){
                                         for(var j=0; j<flights.length; j++){
-                                            if(userFlights[i]==flights[j].number &&canceledFlights[flights[j].number]==false){
+                                            if(userFlights[i]==flights[j].number){
                                                const flightNumber = userFlights[i];
                                                var result = document.createElement("div");
                                                var cancelBtn = document.createElement("button");
@@ -144,7 +143,6 @@
                             var db = firebase.firestore();
                             var user = firebase.auth().currentUser;
                             var uid= user.uid;
-                            console.log(uid);
                             var usersEmail = user.email;
                             db.collection("users").where("email", "==", usersEmail)
                                 .get()
@@ -153,16 +151,12 @@
                                         // doc.data() is never undefined for query doc snapshots
                                         var data=doc.data();
                                         var userFlights = data.flightsBooked;
-                                        var canceledFlights = data.flightsCanceled;
-                                        canceledFlights[flightNum]=true;
                                         var index = userFlights.indexOf(flightNum);
                                         if(index>-1) userFlights.splice(index, 1); //removes the flightnum from the array
-                                        console.log(flightNum + ":" + canceledFlights[flightNum]);
                                         db.collection("users").doc(uid).update({
-                                            "flightsCanceled": canceledFlights
+                                            flightsBooked: userFlights
                                         })
                                         window.alert("Reservation for flight #" + flightNum + " canceled.");
-                                        window.location.href = "myflights.html";
                                     });
                                 })
                                 .catch(function(error) {
