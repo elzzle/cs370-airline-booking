@@ -11,7 +11,9 @@
             "numSeats": "90",
             "seatsTaken": "70",
             "date": "12/13/2019",
-            "departureTime": "14:30"
+            "departureTime": "14:30",
+            "status": "On Time",
+            "gate": "A1"
         },
 
         {
@@ -25,7 +27,9 @@
             "numSeats": "100",
             "seatsTaken": "10",
             "date": "12/13/2019",
-            "departureTime": "22:00"
+            "departureTime": "22:00",
+            "status": "On Time",
+            "gate": "A2"
         },
 
         {
@@ -39,7 +43,9 @@
             "numSeats": "70",
             "seatsTaken": "70",
             "date": "12/13/2019",
-            "departureTime": "09:45"
+            "departureTime": "09:45",
+            "status": "On Time",
+            "gate": "A3"
         },
 
         {
@@ -53,7 +59,9 @@
             "numSeats": "90",
             "seatsTaken": "70",
             "date": "12/14/2019",
-            "departureTime": "14:30"
+            "departureTime": "14:30",
+            "status": "Boarding",
+            "gate": "A4"
         },
         {
             "airline": "Jetblue",
@@ -66,7 +74,9 @@
             "numSeats": "50",
             "seatsTaken": "49",
             "date": "12/15/2019",
-            "departureTime": "03:15"
+            "departureTime": "03:15",
+            "status": "Boarding",
+            "gate": "A5"
         },
         {
             "airline": "United Airlines",
@@ -79,7 +89,9 @@
             "numSeats": "70",
             "seatsTaken": "70",
             "date": "12/15/2019",
-            "departureTime": "08:15"
+            "departureTime": "08:15",
+            "status": "Boarding",
+            "gate": "B1"
         },
         {
             "airline": "Jetblue",
@@ -92,7 +104,9 @@
             "numSeats": "90",
             "seatsTaken": "40",
             "date": "12/13/2019",
-            "departureTime": "09:45"
+            "departureTime": "09:45",
+            "status": "Boarding",
+            "gate": "B2"
         },
         {
             "airline": "Delta Airlines",
@@ -105,7 +119,9 @@
             "numSeats": "50",
             "seatsTaken": "45",
             "date": "12/20/2019",
-            "departureTime": "10:30"
+            "departureTime": "10:30",
+            "status": "Delayed",
+            "gate": "B3"
         },
         {
             "airline": "United Airlines",
@@ -118,7 +134,9 @@
             "numSeats": "100",
             "seatsTaken": "100",
             "date": "12/25/2019",
-            "departureTime": "17:10"
+            "departureTime": "17:10",
+            "status": "Delayed",
+            "gate": "B4"
         },
         {
             "airline": "Jetblue",
@@ -131,7 +149,9 @@
             "numSeats": "100",
             "seatsTaken": "75",
             "date": "12/14/2019",
-            "departureTime": "23:55"
+            "departureTime": "23:55",
+            "status": "Delayed",
+            "gate": "B5"
         },
         {
             "airline": "United Airlines",
@@ -144,7 +164,9 @@
             "numSeats": "80",
             "seatsTaken": "50",
             "date": "12/13/2019",
-            "departureTime": "13:15"
+            "departureTime": "13:15",
+            "status": "Delayed",
+            "gate": "C1"
         },
         {
             "airline": "Delta Airlines",
@@ -157,7 +179,9 @@
             "numSeats": "60",
             "seatsTaken": "50",
             "date": "12/20/2019",
-            "departureTime": "20:15"
+            "departureTime": "20:15",
+            "status": "Cancelled",
+            "gate": "C2"
         },
         {
             "airline": "United Airlines",
@@ -170,7 +194,8 @@
             "numSeats": "80",
             "seatsTaken": "50",
             "date": "12/15/2019",
-            "departureTime": "01:10"
+            "departureTime": "01:10",
+            "status": "Cancelled"
         },
         {
             "airline": "Delta Airlines",
@@ -183,7 +208,9 @@
             "numSeats": "100",
             "seatsTaken": "75",
             "date": "12/20/2019",
-            "departureTime": "07:20"
+            "departureTime": "07:20",
+            "status": "Cancelled",
+            "gate": "C3"
         },
         {
             "airline": "Jetblue",
@@ -196,7 +223,9 @@
             "numSeats": "95",
             "seatsTaken": "85",
             "date": "12/15/2019",
-            "departureTime": "10:30"
+            "departureTime": "10:30",
+            "status": "Cancelled",
+            "gate": "C4"
         },
         {
             "airline": "United Airlines",
@@ -209,7 +238,9 @@
             "numSeats": "90",
             "seatsTaken": "30",
             "date": "12/23/2019",
-            "departureTime": "01:10"
+            "departureTime": "01:10",
+            "status": "Cancelled",
+            "gate": "C5"
         },
         {
             "airline": "Delta Airlines",
@@ -222,7 +253,9 @@
             "numSeats": "70",
             "seatsTaken": "50",
             "date": "12/19/2019",
-            "departureTime": "19:30"
+            "departureTime": "19:30",
+            "status": "On Time",
+            "gate": "D1"
         },
         {
             "airline": "Jetblue",
@@ -235,7 +268,9 @@
             "numSeats": "60",
             "seatsTaken": "60",
             "date": "12/16/2019",
-            "departureTime": "23:45"
+            "departureTime": "23:45",
+            "status": "On Time",
+            "gate": "D2"
         },
         {
             "airline": "United Airlines",
@@ -248,7 +283,9 @@
             "numSeats": "80",
             "seatsTaken": "50",
             "date": "12/17/2019",
-            "departureTime": "09:10"
+            "departureTime": "09:10",
+            "status": "On Time",
+            "gate": "D3"
         },
         {
             "airline": "Delta Airlines",
@@ -261,7 +298,9 @@
             "numSeats": "80",
             "seatsTaken": "72",
             "date": "12/15/2019",
-            "departureTime": "10:10"
+            "departureTime": "10:10",
+            "status": "On Time",
+            "gate": "D4"
         },
         {
             "airline": "Jetblue",
@@ -274,7 +313,9 @@
             "numSeats": "95",
             "seatsTaken": "85",
             "date": "12/24/2019",
-            "departureTime": "12:30"
+            "departureTime": "12:30",
+            "status": "On Time",
+            "gate": "D5"
         },
         {
             "airline": "United Airlines",
@@ -287,7 +328,9 @@
             "numSeats": "100",
             "seatsTaken": "50",
             "date": "12/24/2019",
-            "departureTime": "13:30"
+            "departureTime": "13:30",
+            "status": "Delayed",
+            "gate": "E1"
         },
         {
             "airline": "Delta Airlines",
@@ -300,7 +343,9 @@
             "numSeats": "110",
             "seatsTaken": "100",
             "date": "12/17/2019",
-            "departureTime": "14:40"
+            "departureTime": "14:40",
+            "status": "Delayed",
+            "gate": "E2"
         },
         {
             "airline": "Jetblue",
@@ -313,7 +358,9 @@
             "numSeats": "85",
             "seatsTaken": "10",
             "date": "12/18/2019",
-            "departureTime": "18:30"
+            "departureTime": "18:30",
+            "status": "Delayed",
+            "gate": "E3"
         },
         {
             "airline": "United Airlines",
@@ -326,7 +373,9 @@
             "numSeats": "80",
             "seatsTaken": "50",
             "date": "12/20/2019",
-            "departureTime": "09:10"
+            "departureTime": "09:10",
+            "status": "Delayed",
+            "gate": "E4"
         },
         {
             "airline": "Delta Airlines",
@@ -339,7 +388,9 @@
             "numSeats": "70",
             "seatsTaken": "30",
             "date": "12/15/2019",
-            "departureTime": "08:30"
+            "departureTime": "08:30",
+            "status": "Delayed",
+            "gate": "E5"
         },
         {
             "airline": "Jetblue",
@@ -352,7 +403,9 @@
             "numSeats": "50",
             "seatsTaken": "50",
             "date": "12/28/2019",
-            "departureTime": "15:20"
+            "departureTime": "15:20",
+            "status": "Boarding",
+            "gate": "F1"
         },
         {
             "airline": "United Airlines",
@@ -365,7 +418,9 @@
             "numSeats": "80",
             "seatsTaken": "50",
             "date": "12/14/2019",
-            "departureTime": "04:10"
+            "departureTime": "04:10",
+            "status": "Boarding",
+            "gate": "F2"
         },
         {
             "airline": "Delta Airlines",
@@ -378,7 +433,9 @@
             "numSeats": "60",
             "seatsTaken": "50",
             "date": "12/20/2019",
-            "departureTime": "06:10"
+            "departureTime": "06:10",
+            "status": "Boarding",
+            "gate": "F3"
         },
         {
             "airline": "Jetblue",
@@ -391,7 +448,9 @@
             "numSeats": "80",
             "seatsTaken": "65",
             "date": "12/23/2019",
-            "departureTime": "09:10"
+            "departureTime": "09:10",
+            "status": "Boarding",
+            "gate": "F4"
         },
         {
             "airline": "United Airlines",
@@ -404,7 +463,9 @@
             "numSeats": "100",
             "seatsTaken": "50",
             "date": "12/20/2019",
-            "departureTime": "09:10"
+            "departureTime": "09:10",
+            "status": "Boarding",
+            "gate": "F5"
         },
         {
             "airline": "Delta Airlines",
@@ -417,7 +478,9 @@
             "numSeats": "100",
             "seatsTaken": "100",
             "date": "12/19/2019",
-            "departureTime": "05:15"
+            "departureTime": "05:15",
+            "status": "On Time",
+            "gate": "G1"
         },
         {
             "airline": "Jetblue",
@@ -430,7 +493,9 @@
             "numSeats": "70",
             "seatsTaken": "24",
             "date": "12/26/2019",
-            "departureTime": "17:40"
+            "departureTime": "17:40",
+            "status": "On Time",
+            "gate": "G2"
         },
         {
             "airline": "United Airlines",
@@ -443,7 +508,9 @@
             "numSeats": "70",
             "seatsTaken": "40",
             "date": "12/21/2019",
-            "departureTime": "10:00"
+            "departureTime": "10:00",
+            "status": "On Time",
+            "gate": "G3"
         },
         {
             "airline": "Delta Airlines",
@@ -456,7 +523,9 @@
             "numSeats": "100",
             "seatsTaken": "50",
             "date": "12/25/2019",
-            "departureTime": "14:30"
+            "departureTime": "14:30",
+            "status": "On Time",
+            "gate": "G4"
         },
         {
             "airline": "Jetblue",
@@ -469,20 +538,9 @@
             "numSeats": "50",
             "seatsTaken": "30",
             "date": "12/18/2019",
-            "departureTime": "06:30"
-        },
-        {
-            "airline": "Jetblue",
-            "number": "37",
-            "sourceAirport": "JFK",
-            "destinationAirport": "LAX",
-            "sourceCity": "New York City",
-            "destinationCity": "Los Angeles",
-            "flightLength": "270",
-            "numSeats": "50",
-            "seatsTaken": "49",
-            "date": "12/15/2019",
-            "departureTime": "03:15"
+            "departureTime": "06:30",
+            "status": "On Time",
+            "gate": "G5"
         }
     ]
 }
