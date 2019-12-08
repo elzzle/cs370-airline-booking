@@ -82,47 +82,51 @@
 
                 var flights;
 
-                $.getJSON("flights.json", function(json){
-                    flights=json.flights;
-                    var myFlights = document.getElementById('my-flights');
-                    firebase.auth().onAuthStateChanged(function(user){
-                        if(user){
-                            //user is signed in
-                            var db = firebase.firestore();
-                            var user = firebase.auth().currentUser;
-                            console.log(user);
-                            var uid= user.uid;
-                            var usersEmail = user.email;
-                            db.collection("users").where("email", "==", usersEmail)
-                                .get()
-                                .then(function(querySnapshot) {
-                                    querySnapshot.forEach(function(doc) {
-                                        // doc.data() is never undefined for query doc snapshots
-                                        var data=doc.data();
-                                        var userFlights = data.flightsBooked;
-                                        for(var i=0; i<userFlights.length; i++){
-                                            for(var j=0; j<flights.length; j++){
-                                                if(userFlights[i]==flights[j].number){
-                                                    var result = document.createElement("div");
-                                                    var cancelBtn = document.createElement("button");
-                                                    cancelBtn.setAttribute("class", "btn btn-danger")
-                                                    if(flights[j].airline=="Delta Airlines") result.setAttribute("class", "delta-page-result");
-                                                    else if(flights[j].airline == "Jetblue") result.setAttribute("class", "jetblue-page-result");
-                                                    else if(flights[j].airline == "United Airlines") result.setAttribute("class", "united-page-result");
-                                                    var resultContent = flights[j].sourceAirport + " (" + flights[j].sourceCity + ")" + "-->" + flights[j].destinationAirport + " (" + flights[j].destinationCity + ")"+ "  " + "Flight Number:" + flights[j].number + "  " + "Date:" + flights[j].date + "  " + "Time:" + flights[j].time + "  " + "Flight Length:" + flights[j].flightLength + " minutes";
-                                                    result.innerHTML = resultContent;
-                                                    cancelBtn.innerHTML = "Cancel Reservation";
-                                                    var br1 = document.createElement("br");
-                                                    var hr1 = document.createElement("hr");
-                                                    result.appendChild(br1);
-                                                    result.appendChild(cancelBtn);
-                                                    myFlights.appendChild(result);
-                                                    myFlights.appendChild(hr1);
-                                                }
+            $.getJSON("flights.json", function(json){
+                flights=json.flights;
+                var myFlights = document.getElementById('my-flights');
+                firebase.auth().onAuthStateChanged(function(user){
+                    if(user){
+                        //user is signed in
+                        var db = firebase.firestore();
+                        var user = firebase.auth().currentUser;
+                        var uid= user.uid;
+                        var usersEmail = user.email;
+                        db.collection("users").where("email", "==", usersEmail)
+                            .get()
+                            .then(function(querySnapshot) {
+                                querySnapshot.forEach(function(doc) {
+                                    // doc.data() is never undefined for query doc snapshots
+                                    var data=doc.data();
+                                    var userFlights = data.flightsBooked;
+                                    var canceledFlights = data.flightsCanceled;
+                                    for(var i=0; i<userFlights.length; i++){
+                                        for(var j=0; j<flights.length; j++){
+                                            if(userFlights[i]==flights[j].number &&canceledFlights[flights[j].number]==false){
+                                               const flightNumber = userFlights[i];
+                                               var result = document.createElement("div");
+                                               var cancelBtn = document.createElement("button");
+                                               cancelBtn.setAttribute("class", "btn btn-danger");
+                                               cancelBtn.onclick = function(){
+                                                    cancelReservation(flightNumber);
+                                               }
+                                                if(flights[j].airline=="Delta Airlines") result.setAttribute("class", "delta-page-result");
+                                                else if(flights[j].airline == "Jetblue") result.setAttribute("class", "jetblue-page-result");
+                                                else if(flights[j].airline == "United Airlines") result.setAttribute("class", "united-page-result");
+                                                var resultContent = flights[j].sourceAirport + " (" + flights[j].sourceCity + ")" + "-->" + flights[j].destinationAirport + " (" + flights[j].destinationCity + ")"+ "  " + "Flight Number:" + flights[j].number + "  " + "Date:" + flights[j].date + "  " + "Time:" + flights[j].departureTime + "  " + "Flight Length:" + flights[j].flightLength + " minutes";
+                                                result.innerHTML = resultContent;
+                                                cancelBtn.innerHTML = "Cancel Reservation";
+                                                var br1 = document.createElement("br");
+                                                var hr1 = document.createElement("hr");
+                                                result.appendChild(br1);
+                                                result.appendChild(cancelBtn);
+                                                myFlights.appendChild(result);
+                                                myFlights.appendChild(hr1);
                                             }
-                                         }
-                                    });
-                                })
+                                        }                                         
+                                    }
+                                });
+                            })
                                 .catch(function(error) {
                                     console.log("Error getting documents: ", error);
                                 });
@@ -132,6 +136,44 @@
                         }
                     });
                 });
+
+                function cancelReservation(flightNum){
+                    firebase.auth().onAuthStateChanged(function(user){
+                        if(user){
+                            //user is signed in
+                            var db = firebase.firestore();
+                            var user = firebase.auth().currentUser;
+                            var uid= user.uid;
+                            console.log(uid);
+                            var usersEmail = user.email;
+                            db.collection("users").where("email", "==", usersEmail)
+                                .get()
+                                .then(function(querySnapshot) {
+                                    querySnapshot.forEach(function(doc) {
+                                        // doc.data() is never undefined for query doc snapshots
+                                        var data=doc.data();
+                                        var userFlights = data.flightsBooked;
+                                        var canceledFlights = data.flightsCanceled;
+                                        canceledFlights[flightNum]=true;
+                                        var index = userFlights.indexOf(flightNum);
+                                        if(index>-1) userFlights.splice(index, 1); //removes the flightnum from the array
+                                        console.log(flightNum + ":" + canceledFlights[flightNum]);
+                                        db.collection("users").doc(uid).update({
+                                            "flightsCanceled": canceledFlights
+                                        })
+                                        window.alert("Reservation for flight #" + flightNum + " canceled.");
+                                        window.location.href = "myflights.html";
+                                    });
+                                })
+                                .catch(function(error) {
+                                    console.log("Error getting documents: ", error);
+                                });
+                        }
+                        else{
+                            //user is not signed in
+                        }
+                    })
+                }
             </script>
     </head>
     <body>

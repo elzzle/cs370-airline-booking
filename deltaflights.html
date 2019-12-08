@@ -84,7 +84,7 @@
                             bookFlight(flightNumber);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -112,7 +112,7 @@
                             bookFlight(flightNumber);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -140,7 +140,7 @@
                         bookBtn.onclick=function(){
                             bookFlight(flightNumber);
                         }
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -159,6 +159,7 @@
                         // User is signed in.
                         //console.log(flightNum);
                         var db = firebase.firestore();
+                        //auth.currentuser returns current user thats logged in
                         var user = firebase.auth().currentUser;
                         var uid= user.uid;
                         var usersEmail = user.email;
@@ -169,15 +170,22 @@
                                         // doc.data() is never undefined for query doc snapshots
                                         var data=doc.data();
                                         var userFlights = data.flightsBooked;
+                                        var canceledFlights = data.flightsCanceled;
                                         for(var i=0; i<userFlights.length; i++){
-                                            if(userFlights[i]==flightNum){
+                                            if(userFlights[i]==flightNum && canceledFlights[flightNum] == false){
                                                 window.alert("You have already booked this flight.");
                                                 return;
                                             }
                                         }
-                                        userFlights.push(flightNum);
+                                        if(userFlights.length==0) userFlights.push(flightNum);
+                                        else for(var i=0; i<userFlights.length; i++){
+                                            if(userFlights[i]==flightNum) break;
+                                            else if(i==userFlights.length-1 && userFlights[i]!=flightNum) userFlights.push(flightNum);
+                                        }
+                                        canceledFlights[flightNum] = false;
                                         db.collection("users").doc(uid).update({
-                                            "flightsBooked": userFlights
+                                            "flightsBooked": userFlights,
+                                            "flightsCanceled": canceledFlights
                                         })
                                         console.log(userFlights);
                                     });

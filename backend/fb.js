@@ -19,13 +19,7 @@ var firebaseConfig = {
 
   firebase.auth.Auth.Persistence.LOCAL;
 
-  /*firebase.auth().onAuthStateChanged(function(user){
-    if(user){
-        console.log("sucksess");
-        window.location.href="test.html";
-    }
-    else console.log("fuCKKKKKKKK");
-});*/
+  
 
 $("#login-btn").click(function(){
     
@@ -36,7 +30,7 @@ $("#login-btn").click(function(){
   if(loginEmail!="" && loginPw!=""){
       firebase.auth().signInWithEmailAndPassword(loginEmail, loginPw)
       .then(user => {
-        window.location.href="test.html"
+        window.location.href="index.html"
       })
       .catch(function(error){ 
           var errMsg = error.message;
@@ -55,8 +49,6 @@ $("#signup-btn").click(function(){
   if(signupEmail!="" && signupPw!=""){
     firebase.auth().createUserWithEmailAndPassword(signupEmail, signupPw)
     .then(user => {
-       // window.location.href="test2.html"
-      //console.log(firebase.auth().currentUser.uid);
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           console.log(user);
@@ -66,8 +58,10 @@ $("#signup-btn").click(function(){
           firebase.firestore().collection('users').doc(userUID).set({
           email: signupEmail,
           password: signupPw,
-          flightsBooked: []
+          flightsBooked: [],
+          flightsCanceled: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
           });
+          window.location.href="index.html"
           
           // User is signed in.
         } else {
