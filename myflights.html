@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
+        <script src="backend/fb.js"></script>
+        <title>Your Booked Flights</title>
+        <nav class="navbar navbar-light" style="background-color: #14277e;">
+                <a class="navbar-brand" href="index.html">
+                    <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
+                </a>
+                <div class="logsign-container">
+                    <a id="loginBtn" class="btn btn-danger" href="login.html">Login</a>
+                    <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
+                    <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
+                    <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
+                </div>
+            </nav>
+            <style>
+                .delta-page-result {
+                text-align: center;
+                color: white;
+                background: url("images/delta.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
+                background-size: 10%;
+                width: 90%;
+                margin-left: 5%;
+                margin-left: 5%;
+                border: 1px solid white;
+            }
+
+                .jetblue-page-result {
+                text-align: center;
+                color: white;
+                background: url("images/jetblue.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
+                background-size: 10%;
+                width: 90%;
+                margin-left: 5%;
+                margin-left: 5%;
+                border: 1px solid white;
+            }   
+
+            .united-page-result {
+                text-align: center;
+                color: white;
+                background: url("images/united.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
+                background-size: 10%;
+                width: 90%;
+                margin-left: 5%;
+                margin-left: 5%;
+                border: 1px solid white;
+            }
+            </style>
+            <script type="text/javascript">
+                //logs user out
+                function logOutUser(){
+                    firebase.auth().signOut();
+                    window.location.href="index.html"
+                }
+                //checks if user is logged in and diplays the buttons on the nav accordingly
+                firebase.auth().onAuthStateChanged(function(user){
+                    if(user){
+                        document.getElementById('loginBtn').style.display='none';
+                        document.getElementById('signupBtn').style.display='none';
+                        document.getElementById('logoutBtn').style.display='inline';
+                        document.getElementById('myFlights').style.display='inline';
+                    }
+                    else {
+                        document.getElementById('loginBtn').style.display='inline';
+                        document.getElementById('signupBtn').style.display='inline';
+                        document.getElementById('logoutBtn').style.display='none';
+                        document.getElementById('myFlights').style.display='none';
+                    }
+                });
+
+                var flights;
+
+                $.getJSON("flights.json", function(json){
+                    flights=json.flights;
+                    var myFlights = document.getElementById('my-flights');
+                    firebase.auth().onAuthStateChanged(function(user){
+                        if(user){
+                            //user is signed in
+                            var db = firebase.firestore();
+                            var user = firebase.auth().currentUser;
+                            console.log(user);
+                            var uid= user.uid;
+                            var usersEmail = user.email;
+                            db.collection("users").where("email", "==", usersEmail)
+                                .get()
+                                .then(function(querySnapshot) {
+                                    querySnapshot.forEach(function(doc) {
+                                        // doc.data() is never undefined for query doc snapshots
+                                        var data=doc.data();
+                                        var userFlights = data.flightsBooked;
+                                        for(var i=0; i<userFlights.length; i++){
+                                            for(var j=0; j<flights.length; j++){
+                                                if(userFlights[i]==flights[j].number){
+                                                    var result = document.createElement("div");
+                                                    var cancelBtn = document.createElement("button");
+                                                    cancelBtn.setAttribute("class", "btn btn-danger")
+                                                    if(flights[j].airline=="Delta Airlines") result.setAttribute("class", "delta-page-result");
+                                                    else if(flights[j].airline == "Jetblue") result.setAttribute("class", "jetblue-page-result");
+                                                    else if(flights[j].airline == "United Airlines") result.setAttribute("class", "united-page-result");
+                                                    var resultContent = flights[j].sourceAirport + " (" + flights[j].sourceCity + ")" + "-->" + flights[j].destinationAirport + " (" + flights[j].destinationCity + ")"+ "  " + "Flight Number:" + flights[j].number + "  " + "Date:" + flights[j].date + "  " + "Time:" + flights[j].time + "  " + "Flight Length:" + flights[j].flightLength + " minutes";
+                                                    result.innerHTML = resultContent;
+                                                    cancelBtn.innerHTML = "Cancel Reservation";
+                                                    var br1 = document.createElement("br");
+                                                    var hr1 = document.createElement("hr");
+                                                    result.appendChild(br1);
+                                                    result.appendChild(cancelBtn);
+                                                    myFlights.appendChild(result);
+                                                    myFlights.appendChild(hr1);
+                                                }
+                                            }
+                                         }
+                                    });
+                                })
+                                .catch(function(error) {
+                                    console.log("Error getting documents: ", error);
+                                });
+                            }
+                        else{
+                            //user is not signed in
+                        }
+                    });
+                });
+            </script>
+    </head>
+    <body>
+        <h1 style="color: white">Your booked flights:</h1>
+        <div id="my-flights"></div>
+    </body>
+</html>
