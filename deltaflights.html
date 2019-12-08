@@ -22,6 +22,7 @@
                 <a id="loginBtn" class="btn btn-danger" href="login.html">Login</a>
                 <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
                 <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
+                <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
             </div>
         </nav>
         <style>
@@ -48,12 +49,14 @@
                 if(user){
                     document.getElementById('loginBtn').style.display='none';
                     document.getElementById('signupBtn').style.display='none';
-                    document.getElementById('logoutBtn').style.display='block';
+                    document.getElementById('logoutBtn').style.display='inline';
+                    document.getElementById('myFlights').style.display='inline';
                 }
                 else {
                     document.getElementById('loginBtn').style.display='inline';
                     document.getElementById('signupBtn').style.display='inline';
                     document.getElementById('logoutBtn').style.display='none';
+                    document.getElementById('myFlights').style.display='none';
                 }
             });
 
@@ -166,6 +169,12 @@
                                         // doc.data() is never undefined for query doc snapshots
                                         var data=doc.data();
                                         var userFlights = data.flightsBooked;
+                                        for(var i=0; i<userFlights.length; i++){
+                                            if(userFlights[i]==flightNum){
+                                                window.alert("You have already booked this flight.");
+                                                return;
+                                            }
+                                        }
                                         userFlights.push(flightNum);
                                         db.collection("users").doc(uid).update({
                                             "flightsBooked": userFlights
