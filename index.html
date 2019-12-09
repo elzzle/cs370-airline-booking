@@ -1,146 +1,32 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="styles.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
-        <script src="backend/fb.js"></script>
-    <title>Book flights with AirBook</title>
-    <nav class="navbar navbar-light" style="background-color: #14277e;">
-        <a class="navbar-brand" href="index.html">
-            <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
-        </a>
-        <div class="logsign-container">
-            <a id="loginBtn" class="btn btn-danger" href="login.html">Login</a>
-            <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
-            <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
-            <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet" href="styles.css">
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
+            <script src="backend/fb.js"></script>
+            <title>Input date...</title>
+    </head>
+    <body>
+        <div id="date-form" class="date-container">
+            <label>Please input today's date.</label><br>
+            <input id="todays-date" type="date" class="form-control seonclick="setTodaysDatlect-date"><br>
+            <button id="date-btn" class="btn btn-danger">Continue</button>
         </div>
-    </nav>
-
-<!-- Enable/Disable Return field when One Way tickets are selected -->
-
-    <script type="text/javascript">
-        function disableReturn(x) {
-            if(x==0) {
-                document.getElementById('oneWay').style.display='block'
-            } else {
-                document.getElementById('oneWay').style.display='none'
+        <script src="backend/date.js"></script>
+        <script type="text/javascript">
+            document.getElementById("date-btn").onclick=function(){
+                var tDate= $("#todays-date").val();
+                sessionStorage.setItem("todaysDate", tDate);
+                window.location.href="frontpage.html"
             }
-            return;
-        }
-        //logs user out
-        function logOutUser(){
-            firebase.auth().signOut();
-            window.location.href="index.html"
-        }
-        //checks if user is logged in and diplays the buttons on the nav accordingly
-        firebase.auth().onAuthStateChanged(function(user){
-            if(user){
-                document.getElementById('loginBtn').style.display='none';
-                document.getElementById('signupBtn').style.display='none';
-                document.getElementById('logoutBtn').style.display='inline';
-                document.getElementById('myFlights').style.display='inline';
-            }
-            else {
-                document.getElementById('loginBtn').style.display='inline';
-                document.getElementById('signupBtn').style.display='inline';
-                document.getElementById('logoutBtn').style.display='none';
-                document.getElementById('myFlights').style.display='none';
-            }
-        });
-    </script>
-</head>
-
-<body>
-    <h1 style="color: white">Book with AirBook.</h1>
-    <p class="welcome-paragraph">AirBook is a convenient way to book/reserve flights! Search by location to the right, or choose an Airline below!</p>
-    <br><br>
-    <h3 style="color:black">Search by Airline</h3>
-    <div class="airline-btns">
-        <div class="delta-btn">
-            <a href="deltaflights.html">
-                <img src="images/delta.jpg" alt="Delta Airlines" width=200 height=100>
-                <div class="overlay">
-                    <div class="text">Delta</div>
-                </div>
-            </a>
-        </div>
-        <div class="jetblue-btn">
-            <a href="jetblueflights.html">
-                <img src="images/jetblue.jpg" alt="Jetblue Airlines" width=200 height=100>
-                <div class="overlay">
-                    <div class="text">JetBlue</div>
-                </div>
-            </a>
-        </div>
-        <div class="united-btn">
-            <a href="unitedflights.html">
-                <img src="images/united.jpg" alt="United Airlines" width=200 height=100>
-                <div class="overlay">
-                    <div class="text">United</div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- Flight Booking Form  -->
-
-    <div class="booking-form-box">
-            <p class="booking-p">Find your desired flight below!</p>
-         <form method="POST" action="#">
-        <div class="radio-btn">
-
-            <input type="radio" class="btn" name="check" checked="checked" onclick="disableReturn(0)"><span>Roundtrip</span>
-            <input type="radio" class="btn" name="check" onclick="disableReturn(1)"><span>One Way</span>
-        </div>
-
-        <div class="booking-form">
-                <label>Flying From</label>
-                <select type="text" name="depart" class="form-control">
-                    <option value="0" disabled="disabled" selected="selected">Leaving From...</option>
-                    <option style="background-color: rgb(0,0,0,0.5);" value="1">JFK (New York)</option>
-                    <option style="background-color: rgb(0,0,0,0.5);" value="2">ORD (Chicago)</option>
-                    <option style="background-color: rgb(0,0,0,0.5);" value="3">LAX (Los Angeles)</option>
-                </select>
-
-                <label>Flying To</label>
-                <select type="text" name="destination" class="form-control">
-                    <option value="0" disabled="disabled" selected="selected">Going To...</option>
-                    <option style="background-color: rgb(0,0,0,0.5);" value="1">JFK (New York)</option>
-                    <option style="background-color: rgb(0,0,0,0.5);" value="2">ORD (Chicago)</option>
-                    <option style="background-color: rgb(0,0,0,0.5);" value="3">LAX (Los Angeles)</option>
-                </select>
-
-                <div class="input-grp">
-                    <label>Depart</label>
-                    <input type="date" class="form-control select-date">
-                </div>
-                <div class="input-grp">
-                    <div id="oneWay">
-                    <label>Return</label>
-                    <input type="date" class="form-control select-date">
-                </div>
-                </div>
-                <div class="input-grp">
-                    <label>Passengers</label>
-                    <input type="number" class="form-control" value="1">
-                </div>
-                <div class="input-grp">
-                    <input id="searchBtn" class="btn btn-primary flight" type="submit" value="Show Flights">
-                    <!-- <button id="searchBtn" type="button" class="btn btn-primary flight">Show Flights</button> -->
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
-
+        </script>
+    </body>
 </html>

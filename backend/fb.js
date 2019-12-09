@@ -60,7 +60,8 @@ $("#signup-btn").click(function(){
           password: signupPw,
           flightsBooked: []
           });
-          window.location.href="index.html"
+          //window.location.href="index.html"
+          window.alert("Sign up successful.");
           
           // User is signed in.
         } else {
