@@ -12,7 +12,7 @@
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
         <script src="backend/fb.js"></script>
 
-        <title>Book flights with AirBook</title>
+        <title>JFK Flights Status</title>
         <nav class="navbar navbar-light" style="background-color: #14277e;">
             <a class="navbar-brand" href="index.html">
                 <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
@@ -47,65 +47,62 @@
                 }
             });
 
-            const statusBody = document.querySelector("#status-table > tbody");
-            // console.log(statusBody);
+            // Get current date
 
-            function loadStatus() {
-                const request = new XMLHttpRequest();
-                request.open("get", "flights.json");
-                request.onload = () => {
-                    try {
-
-                    const json = JSON.parse(request.responseText);
-                    populateStatus(json);
-                    } catch (e) {
-                        console.warn("Could not load Status");
-                    }
-                }
-                request.send();
+            var date = new Date();
+            var mm = date.getMonth() + 1;
+            var dd = date.getDate();
+            var yyyy = date.getFullYear();
+            if (mm < 10) {
+                mm = '0' + mm
             }
-            function populateStatus(json) {
-                // console.log(json)
-                // Clears out existing table data
-                // while (statusBody.firstChild) {
-                //     statusBody.removeChild(statusBody.firstChild);
-                // }
-                for(var i=0; i<json.flights.length; i++){
-                    // console.log(json.flights[i]);
-                    const tr = document.createElement("tr");
-
-                }
-
-                statusBody.appendChild(tr);
-                // Populate Table
-                // json.forEach((row) => {
-                //     console.log(row)
-                // })
+            if (dd < 10) {
+                dd = '0' + dd
             }
+            date = mm + '/' + dd + '/' + yyyy;
 
-            document.addEventListener("DOMContentLoaded", () => {loadStatus(); });
+            $(document).ready(function() {
+                $.getJSON("flights.json", function(data){
+                    var status_data = '';
+                    $.each(data, function(key, flights){
+                        for(var i = 0; i < flights.length; i++){
+                            if(flights[i].sourceAirport=="JFK" && flights[i].date == date){
+                                status_data += '<tr>';
+                                status_data += '<td>'+ flights[i].departureTime +'</td>';
+                                status_data += '<td>'+ flights[i].destinationAirport +'</td>';
+                                status_data += '<td>'+ flights[i].gate +'</td>';
+                                if(flights[i].status === 'Boarding') {
+                                    status_data += '<td class="status">' + flights[i].status + '</td>';
+                                } else if(flights[i].status === 'On Time') {
+                                    status_data += '<td class="status onTime">' + flights[i].status + '</td>';
+                                } else if(flights[i].status === 'Delayed') {
+                                    status_data += '<td class="status delayed">' + flights[i].status + '</td>';
+                                } else {
+                                    status_data += '<td class="status cancelled">' + flights[i].status + '</td>';
+                                }
+                              status_data += '</tr>';
+                            }
+                        }
+                    });
+                    $('#status-table').append(status_data);
+                });
+            });
 
         </script>
-
-        <table id="status-table" class="table">
+        <div class="flightStatus">
+        <br/>
+        <h1>JFK Departure Flights Status</h1>
+        <br/>
+        <table id="status-table" class="statusContainer">
             <thead>
                 <tr>
-                    <th>Time</th>
+                    <th>Departure Time</th>
                     <th>Destination</th>
                     <th>Gate</th>
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </tbody>
         </table>
+        </div>
     </body>
 </html>

@@ -7,7 +7,6 @@
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
@@ -22,7 +21,6 @@
                 <a id="loginBtn" class="btn btn-danger" href="login.html">Login</a>
                 <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
                 <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
-                <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
             </div>
         </nav>
         <style>
@@ -49,14 +47,12 @@
                 if(user){
                     document.getElementById('loginBtn').style.display='none';
                     document.getElementById('signupBtn').style.display='none';
-                    document.getElementById('logoutBtn').style.display='inline';
-                    document.getElementById('myFlights').style.display='inline';
+                    document.getElementById('logoutBtn').style.display='block';
                 }
                 else {
                     document.getElementById('loginBtn').style.display='inline';
                     document.getElementById('signupBtn').style.display='inline';
                     document.getElementById('logoutBtn').style.display='none';
-                    document.getElementById('myFlights').style.display='none';
                 }
             });
 
@@ -75,22 +71,17 @@
                     if(flights[i].airline=="United Airlines" && flights[i].sourceAirport=="JFK"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
-                        const flightNumber = flights[i].number;
                         var resultID = jfkResultID + ++jfkResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
-                        bookBtn.setAttribute("class", "btn btn-danger");
-                        bookBtn.onclick=function(){
-                            bookFlight(flightNumber);
-                        }
-                        //bookBtn.onclick = bookFlight(flights[i].number);
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        bookBtn.setAttribute("class", "btn btn-danger")
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        /*if(firebase.auth().currentUser!=null)*/ result.appendChild(bookBtn);
+                        result.appendChild(bookBtn);
                         jfkDiv.appendChild(result);
                         jfkDiv.appendChild(hr1);
                     }
@@ -103,22 +94,17 @@
                     if(flights[i].airline=="United Airlines" && flights[i].sourceAirport=="ORD"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
-                        const flightNumber = flights[i].number;
                         var resultID = ordResultID + ++ordResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
-                        bookBtn.setAttribute("class", "btn btn-danger");
-                        bookBtn.onclick=function(){
-                            bookFlight(flightNumber);
-                        }
-                        //bookBtn.onclick = bookFlight(flights[i].number);
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        bookBtn.setAttribute("class", "btn btn-danger")
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        /*if(firebase.auth().currentUser!=null)*/ result.appendChild(bookBtn);
+                        result.appendChild(bookBtn);
                         ordDiv.appendChild(result);
                         ordDiv.appendChild(hr1);
                     }
@@ -131,71 +117,24 @@
                     if(flights[i].airline=="United Airlines" && flights[i].sourceAirport=="LAX"){
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
-                        const flightNumber = flights[i].number;
                         var resultID = laxResultID + ++laxResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
-                        bookBtn.setAttribute("class", "btn btn-danger");
-                        //bookBtn.onclick = bookFlight(flights[i].number);
-                        bookBtn.onclick=function(){
-                            bookFlight(flightNumber);
-                        }
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        bookBtn.setAttribute("class", "btn btn-danger")
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        /*if(firebase.auth().currentUser!=null) */result.appendChild(bookBtn);
+                        result.appendChild(bookBtn);
                         laxDiv.appendChild(result);
                         laxDiv.appendChild(hr1);
                     }
                 }
-            });
 
-            function bookFlight(flightNum){
-                firebase.auth().onAuthStateChanged(function(user) {
-                    if (user) {
-                        // User is signed in.
-                        console.log(firebaseConfig);
-                        var db = firebase.firestore();
-                        var user = firebase.auth().currentUser;
-                        var uid= user.uid;
-                        var usersEmail = user.email;
-                        db.collection("users").where("email", "==", usersEmail)
-                                .get()
-                                .then(function(querySnapshot) {
-                                    querySnapshot.forEach(function(doc) {
-                                        // doc.data() is never undefined for query doc snapshots
-                                        var data=doc.data();
-                                        var userFlights = data.flightsBooked;
-                                        for(var i=0; i<userFlights.length; i++){
-                                            if(userFlights[i]==flightNum){
-                                                window.alert("You have already booked this flight.");
-                                                return;
-                                            }
-                                        }
-                                        if(userFlights.length==0) userFlights.push(flightNum);
-                                        else for(var i=0; i<userFlights.length; i++){
-                                            if(userFlights[i]==flightNum) break;
-                                            else if(i==userFlights.length-1 && userFlights[i]!=flightNum) userFlights.push(flightNum);
-                                        }
-                                        db.collection("users").doc(uid).update({
-                                            "flightsBooked": userFlights
-                                        })
-                                        console.log(userFlights);
-                                    });
-                                })
-                                .catch(function(error) {
-                                    console.log("Error getting documents: ", error);
-                                });
-                                
-                            } else {
-                        // No user is signed in.
-                        window.alert("You must be logged in to book a flight.");
-                    }
-                    });
-                }
+
+            });
 
         </script>
     </head>

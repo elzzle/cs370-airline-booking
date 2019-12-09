@@ -246,19 +246,20 @@ input::placeholder {
 
 .statusContainer {
 max-width: 640px;
-padding: 0 15px;
-margin: 0 auto;
+padding: 15px;
+margin: 15px;
 }
 
 .flightStatus {
-text-align: center;
+text-align: left;
 width: 100%;
 background: #f9f9f9;
 }
 
 table {
 display: table;
-width: 100%;
+width: 80%;
+margin: 15px;
 }
 
 th {

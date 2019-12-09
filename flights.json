@@ -10,7 +10,7 @@
             "flightLength": "270",
             "numSeats": "90",
             "seatsTaken": "70",
-            "date": "12/13/2019",
+            "date": "12/08/2019",
             "departureTime": "14:30",
             "status": "On Time",
             "gate": "A1"
@@ -26,7 +26,7 @@
             "flightLength": "270",
             "numSeats": "100",
             "seatsTaken": "10",
-            "date": "12/13/2019",
+            "date": "12/08/2019",
             "departureTime": "22:00",
             "status": "On Time",
             "gate": "A2"
@@ -195,7 +195,8 @@
             "seatsTaken": "50",
             "date": "12/15/2019",
             "departureTime": "01:10",
-            "status": "Cancelled"
+            "status": "Cancelled",
+            "gate": "C3"
         },
         {
             "airline": "Delta Airlines",
@@ -210,7 +211,7 @@
             "date": "12/20/2019",
             "departureTime": "07:20",
             "status": "Cancelled",
-            "gate": "C3"
+            "gate": "C4"
         },
         {
             "airline": "Jetblue",
@@ -225,7 +226,7 @@
             "date": "12/15/2019",
             "departureTime": "10:30",
             "status": "Cancelled",
-            "gate": "C4"
+            "gate": "C5"
         },
         {
             "airline": "United Airlines",
@@ -240,7 +241,7 @@
             "date": "12/23/2019",
             "departureTime": "01:10",
             "status": "Cancelled",
-            "gate": "C5"
+            "gate": "D1"
         },
         {
             "airline": "Delta Airlines",
@@ -255,7 +256,7 @@
             "date": "12/19/2019",
             "departureTime": "19:30",
             "status": "On Time",
-            "gate": "D1"
+            "gate": "D2"
         },
         {
             "airline": "Jetblue",
@@ -270,7 +271,7 @@
             "date": "12/16/2019",
             "departureTime": "23:45",
             "status": "On Time",
-            "gate": "D2"
+            "gate": "D3"
         },
         {
             "airline": "United Airlines",
@@ -285,7 +286,7 @@
             "date": "12/17/2019",
             "departureTime": "09:10",
             "status": "On Time",
-            "gate": "D3"
+            "gate": "D4"
         },
         {
             "airline": "Delta Airlines",
@@ -300,7 +301,7 @@
             "date": "12/15/2019",
             "departureTime": "10:10",
             "status": "On Time",
-            "gate": "D4"
+            "gate": "D5"
         },
         {
             "airline": "Jetblue",
@@ -315,7 +316,7 @@
             "date": "12/24/2019",
             "departureTime": "12:30",
             "status": "On Time",
-            "gate": "D5"
+            "gate": "E1"
         },
         {
             "airline": "United Airlines",
@@ -330,7 +331,7 @@
             "date": "12/24/2019",
             "departureTime": "13:30",
             "status": "Delayed",
-            "gate": "E1"
+            "gate": "E2"
         },
         {
             "airline": "Delta Airlines",
@@ -345,7 +346,7 @@
             "date": "12/17/2019",
             "departureTime": "14:40",
             "status": "Delayed",
-            "gate": "E2"
+            "gate": "E3"
         },
         {
             "airline": "Jetblue",
@@ -360,7 +361,7 @@
             "date": "12/18/2019",
             "departureTime": "18:30",
             "status": "Delayed",
-            "gate": "E3"
+            "gate": "E4"
         },
         {
             "airline": "United Airlines",
@@ -375,7 +376,7 @@
             "date": "12/20/2019",
             "departureTime": "09:10",
             "status": "Delayed",
-            "gate": "E4"
+            "gate": "E5"
         },
         {
             "airline": "Delta Airlines",
@@ -390,7 +391,7 @@
             "date": "12/15/2019",
             "departureTime": "08:30",
             "status": "Delayed",
-            "gate": "E5"
+            "gate": "F1"
         },
         {
             "airline": "Jetblue",
@@ -405,7 +406,7 @@
             "date": "12/28/2019",
             "departureTime": "15:20",
             "status": "Boarding",
-            "gate": "F1"
+            "gate": "F2"
         },
         {
             "airline": "United Airlines",
@@ -420,7 +421,7 @@
             "date": "12/14/2019",
             "departureTime": "04:10",
             "status": "Boarding",
-            "gate": "F2"
+            "gate": "F3"
         },
         {
             "airline": "Delta Airlines",
@@ -435,7 +436,7 @@
             "date": "12/20/2019",
             "departureTime": "06:10",
             "status": "Boarding",
-            "gate": "F3"
+            "gate": "F4"
         },
         {
             "airline": "Jetblue",
@@ -450,7 +451,7 @@
             "date": "12/23/2019",
             "departureTime": "09:10",
             "status": "Boarding",
-            "gate": "F4"
+            "gate": "F5"
         },
         {
             "airline": "United Airlines",
@@ -465,7 +466,7 @@
             "date": "12/20/2019",
             "departureTime": "09:10",
             "status": "Boarding",
-            "gate": "F5"
+            "gate": "G1"
         },
         {
             "airline": "Delta Airlines",
@@ -480,7 +481,7 @@
             "date": "12/19/2019",
             "departureTime": "05:15",
             "status": "On Time",
-            "gate": "G1"
+            "gate": "G2"
         },
         {
             "airline": "Jetblue",
@@ -495,7 +496,7 @@
             "date": "12/26/2019",
             "departureTime": "17:40",
             "status": "On Time",
-            "gate": "G2"
+            "gate": "G3"
         },
         {
             "airline": "United Airlines",
@@ -510,7 +511,7 @@
             "date": "12/21/2019",
             "departureTime": "10:00",
             "status": "On Time",
-            "gate": "G3"
+            "gate": "G4"
         },
         {
             "airline": "Delta Airlines",
@@ -525,7 +526,7 @@
             "date": "12/25/2019",
             "departureTime": "14:30",
             "status": "On Time",
-            "gate": "G4"
+            "gate": "G5"
         },
         {
             "airline": "Jetblue",
@@ -540,7 +541,7 @@
             "date": "12/18/2019",
             "departureTime": "06:30",
             "status": "On Time",
-            "gate": "G5"
+            "gate": "H1"
         }
     ]
 }
