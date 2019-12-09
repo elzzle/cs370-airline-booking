@@ -15,7 +15,7 @@
 
         <title>Book flights with AirBook</title>
         <nav class="navbar navbar-light" style="background-color: #14277e;">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="frontpage.html">
                 <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
             </a>
             <div class="logsign-container">
@@ -42,7 +42,7 @@
             //logs user out
             function logOutUser(){
                 firebase.auth().signOut();
-                window.location.href="index.html"
+                window.location.href="frontpage.html"
             }
             //checks if user is logged in and diplays the buttons on the nav accordingly
             firebase.auth().onAuthStateChanged(function(user){
