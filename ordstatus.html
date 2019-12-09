@@ -12,7 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
     <script src="backend/fb.js"></script>
-    <title>JFK Flights Status</title>
+    <title>ORD Flights Status</title>
     <nav class="navbar navbar-light" style="background-color: #14277e;">
         <a class="navbar-brand" href="frontpage.html">
             <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
@@ -60,7 +60,7 @@
                 current_date += '<h2>' + date + '</h2>'
                 // console.log(current_date)
                 for (var i = 0; i < flights.length; i++) {
-                    if (flights[i].sourceAirport == "JFK" && flights[i].date == date) {
+                    if (flights[i].sourceAirport == "ORD" && flights[i].date == date) {
                         departure_data += '<tr>';
                         departure_data += '<td>' + flights[i].airline + '</td>';
                         departure_data += '<td>' + flights[i].departureTime + '</td>';
@@ -76,8 +76,7 @@
                             departure_data += '<td class="status cancelled">' + flights[i].status + '</td>';
                         }
                         departure_data += '</tr>';
-                    } else if (flights[i].destinationAirport == "JFK" && flights[i].date == date) {
-
+                    } else if (flights[i].destinationAirport == "ORD" && flights[i].date == date) {
                         arrival_data += '<tr>';
                         arrival_data += '<td>' + flights[i].airline + '</td>';
                         arrival_data += '<td>' + flights[i].arrivalTime + '</td>';
@@ -106,7 +105,7 @@
         <br />
         <div id="current-date"></div>
         <center>
-            <img src="./images/jfk.jpg" width="200px" style="margin-bottom:15px">
+            <img src="./images/ord.jpg" width="200px" style="margin-bottom:15px">
             <h1>Departure Flights Status</h1>
             <table class="statusContainer" id="departure-status">
                 <thead>
