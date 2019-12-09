@@ -146,7 +146,7 @@
                         var br1 = document.createElement("br");
                         var hr1 = document.createElement("hr");
                         result.appendChild(br1);
-                        /*if(firebase.auth().currentUser!=null) */result.appendChild(bookBtn);
+                        result.appendChild(bookBtn);
                         laxDiv.appendChild(result);
                         laxDiv.appendChild(hr1);
                     }
@@ -196,6 +196,7 @@
         </script>
     </head>
     <body>
+        <div id="dateDiv"></div>
         <h1 style="color: white">Delta Airlines Flights:</h1>
         <div id="jfk-flights">
             <h1 style="color:white">JFK (New York City, New York) Flights:</h1>
@@ -208,6 +209,13 @@
         <div id="lax-flights">
             <h1 style="color:white">LAX (Los Angeles, California) Flights:</h1>
         </div>
-
+        <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
+        </script>
     </body>
 </html>

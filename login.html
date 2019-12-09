@@ -25,7 +25,7 @@
      </nav>
     </head>
     <body>
-        
+            <div id="dateDiv"></div>
             <div class="signup-container">
                 <h1>Sign into AirBook</h1>
                 <p>Please fill out the fields to sign in.</p>
@@ -45,6 +45,12 @@
         
         <script src="backend/fb.js"></script>
         <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
         firebase.auth().onAuthStateChanged(function(user){
             if(user){
                 console.log("sucksess");

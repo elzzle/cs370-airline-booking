@@ -81,6 +81,7 @@
             });
 
         </script>
+        <div id="dateDiv"></div>
         <div class="flightStatus">
         <br/>
         <h1>JFK Departure Flights Status</h1>
@@ -96,5 +97,13 @@
             </thead>
         </table>
         </div>
+        <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
+        </script>
     </body>
 </html>

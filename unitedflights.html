@@ -29,9 +29,9 @@
                 color: white;
                 background: url("images/united.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
                 background-size: 10%;
-                width: 80%;
-                margin-left: 10%;
-                margin-left: 10%;
+                width: 90%;
+                margin-left: 5%;
+                margin-left: 5%;
                 border: 1px solid white;
             }
         </style>
@@ -75,7 +75,7 @@
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger")
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -98,7 +98,7 @@
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger")
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -121,7 +121,7 @@
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "united-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger")
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].time + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -139,6 +139,7 @@
         </script>
     </head>
     <body>
+        <div id="dateDiv"></div>
         <h1 style="color: white">United Airlines Flights:</h1>
         <div id="jfk-flights">
             <h1 style="color:white">JFK (New York City, New York) Flights:</h1>
@@ -151,6 +152,13 @@
         <div id="lax-flights">
             <h1 style="color:white">LAX (Los Angeles, California) Flights:</h1>
         </div>
-
+        <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
+        </script>
     </body>
 </html>
