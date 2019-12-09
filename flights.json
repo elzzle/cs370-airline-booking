@@ -12,6 +12,7 @@
             "seatsTaken": "70",
             "date": "12/09/2019",
             "departureTime": "14:30",
+            "arrivalTime": "16:00",
             "status": "On Time",
             "gate": "A1"
         },
@@ -28,6 +29,7 @@
             "seatsTaken": "10",
             "date": "12/09/2019",
             "departureTime": "22:00",
+            "arrivalTime": "23:30",
             "status": "On Time",
             "gate": "A2"
         },
@@ -44,6 +46,7 @@
             "seatsTaken": "70",
             "date": "12/13/2019",
             "departureTime": "09:45",
+            "arrivalTime": "10:15",
             "status": "On Time",
             "gate": "A3"
         },
@@ -58,8 +61,9 @@
             "flightLength": "270",
             "numSeats": "90",
             "seatsTaken": "70",
-            "date": "12/14/2019",
+            "date": "12/09/2019",
             "departureTime": "14:30",
+            "arrivalTime": "16:00",
             "status": "Boarding",
             "gate": "A4"
         },
@@ -75,6 +79,7 @@
             "seatsTaken": "49",
             "date": "12/15/2019",
             "departureTime": "03:15",
+            "arrivalTime": "04:45",
             "status": "Boarding",
             "gate": "A5"
         },
@@ -90,6 +95,7 @@
             "seatsTaken": "70",
             "date": "12/15/2019",
             "departureTime": "08:15",
+            "arrivalTime": "09:45",
             "status": "Boarding",
             "gate": "B1"
         },
@@ -105,6 +111,7 @@
             "seatsTaken": "40",
             "date": "12/13/2019",
             "departureTime": "09:45",
+            "arrivalTime": "09:55",
             "status": "Boarding",
             "gate": "B2"
         },
@@ -120,6 +127,7 @@
             "seatsTaken": "45",
             "date": "12/20/2019",
             "departureTime": "10:30",
+            "arrivalTime": "12:40",
             "status": "Delayed",
             "gate": "B3"
         },
@@ -135,6 +143,7 @@
             "seatsTaken": "100",
             "date": "12/25/2019",
             "departureTime": "17:10",
+            "arrivalTime": "19:20",
             "status": "Delayed",
             "gate": "B4"
         },
@@ -150,6 +159,7 @@
             "seatsTaken": "75",
             "date": "12/14/2019",
             "departureTime": "23:55",
+            "arrivalTime": "02:05",
             "status": "Delayed",
             "gate": "B5"
         },
@@ -165,6 +175,7 @@
             "seatsTaken": "50",
             "date": "12/13/2019",
             "departureTime": "13:15",
+            "arrivalTime": "15:25",
             "status": "Delayed",
             "gate": "C1"
         },
@@ -180,6 +191,7 @@
             "seatsTaken": "50",
             "date": "12/20/2019",
             "departureTime": "20:15",
+            "arrivalTime": "22:25",
             "status": "Cancelled",
             "gate": "C2"
         },
@@ -195,6 +207,7 @@
             "seatsTaken": "50",
             "date": "12/15/2019",
             "departureTime": "01:10",
+            "arrivalTime": "01:40",
             "status": "Cancelled",
             "gate": "C3"
         },
@@ -210,6 +223,7 @@
             "seatsTaken": "75",
             "date": "12/20/2019",
             "departureTime": "07:20",
+            "arrivalTime": "07:50",
             "status": "Cancelled",
             "gate": "C4"
         },
@@ -225,6 +239,7 @@
             "seatsTaken": "85",
             "date": "12/15/2019",
             "departureTime": "10:30",
+            "arrivalTime": "11:00",
             "status": "Cancelled",
             "gate": "C5"
         },
@@ -240,6 +255,7 @@
             "seatsTaken": "30",
             "date": "12/23/2019",
             "departureTime": "01:10",
+            "arrivalTime": "01:40",
             "status": "Cancelled",
             "gate": "D1"
         },
@@ -255,6 +271,7 @@
             "seatsTaken": "50",
             "date": "12/19/2019",
             "departureTime": "19:30",
+            "arrivalTime": "20:00",
             "status": "On Time",
             "gate": "D2"
         },
@@ -270,6 +287,7 @@
             "seatsTaken": "60",
             "date": "12/16/2019",
             "departureTime": "23:45",
+            "arrivalTime": "00:15",
             "status": "On Time",
             "gate": "D3"
         },
@@ -283,8 +301,9 @@
             "flightLength": "120",
             "numSeats": "80",
             "seatsTaken": "50",
-            "date": "12/17/2019",
+            "date": "12/09/2019",
             "departureTime": "09:10",
+            "arrivalTime": "11:10",
             "status": "On Time",
             "gate": "D4"
         },
@@ -300,6 +319,7 @@
             "seatsTaken": "72",
             "date": "12/15/2019",
             "departureTime": "10:10",
+            "arrivalTime": "12:10",
             "status": "On Time",
             "gate": "D5"
         },
@@ -313,8 +333,9 @@
             "flightLength": "120",
             "numSeats": "95",
             "seatsTaken": "85",
-            "date": "12/24/2019",
+            "date": "12/09/2019",
             "departureTime": "12:30",
+            "arrivalTime": "00:30",
             "status": "On Time",
             "gate": "E1"
         },
@@ -330,6 +351,7 @@
             "seatsTaken": "50",
             "date": "12/24/2019",
             "departureTime": "13:30",
+            "arrivalTime": "15:30",
             "status": "Delayed",
             "gate": "E2"
         },
@@ -345,6 +367,7 @@
             "seatsTaken": "100",
             "date": "12/17/2019",
             "departureTime": "14:40",
+            "arrivalTime": "16:40",
             "status": "Delayed",
             "gate": "E3"
         },
@@ -360,6 +383,7 @@
             "seatsTaken": "10",
             "date": "12/18/2019",
             "departureTime": "18:30",
+            "arrivalTime": "20:30",
             "status": "Delayed",
             "gate": "E4"
         },
@@ -375,6 +399,7 @@
             "seatsTaken": "50",
             "date": "12/20/2019",
             "departureTime": "09:10",
+            "arrivalTime": "13:40",
             "status": "Delayed",
             "gate": "E5"
         },
@@ -390,6 +415,7 @@
             "seatsTaken": "30",
             "date": "12/15/2019",
             "departureTime": "08:30",
+            "arrivalTime": "13:00",
             "status": "Delayed",
             "gate": "F1"
         },
@@ -405,6 +431,7 @@
             "seatsTaken": "50",
             "date": "12/28/2019",
             "departureTime": "15:20",
+            "arrivalTime": "19:50",
             "status": "Boarding",
             "gate": "F2"
         },
@@ -420,6 +447,7 @@
             "seatsTaken": "50",
             "date": "12/14/2019",
             "departureTime": "04:10",
+            "arrivalTime": "08:40",
             "status": "Boarding",
             "gate": "F3"
         },
@@ -435,6 +463,7 @@
             "seatsTaken": "50",
             "date": "12/20/2019",
             "departureTime": "06:10",
+            "arrivalTime": "10:30",
             "status": "Boarding",
             "gate": "F4"
         },
@@ -450,6 +479,7 @@
             "seatsTaken": "65",
             "date": "12/23/2019",
             "departureTime": "09:10",
+            "arrivalTime": "13:40",
             "status": "Boarding",
             "gate": "F5"
         },
@@ -465,6 +495,7 @@
             "seatsTaken": "50",
             "date": "12/20/2019",
             "departureTime": "09:10",
+            "arrivalTime": "16:40",
             "status": "Boarding",
             "gate": "G1"
         },
@@ -480,6 +511,7 @@
             "seatsTaken": "100",
             "date": "12/19/2019",
             "departureTime": "05:15",
+            "arrivalTime": "12:45",
             "status": "On Time",
             "gate": "G2"
         },
@@ -495,6 +527,7 @@
             "seatsTaken": "24",
             "date": "12/26/2019",
             "departureTime": "17:40",
+            "arrivalTime": "01:10",
             "status": "On Time",
             "gate": "G3"
         },
@@ -510,6 +543,7 @@
             "seatsTaken": "40",
             "date": "12/21/2019",
             "departureTime": "10:00",
+            "arrivalTime": "17:30",
             "status": "On Time",
             "gate": "G4"
         },
@@ -525,6 +559,7 @@
             "seatsTaken": "50",
             "date": "12/25/2019",
             "departureTime": "14:30",
+            "arrivalTime": "23:00",
             "status": "On Time",
             "gate": "G5"
         },
@@ -540,6 +575,7 @@
             "seatsTaken": "30",
             "date": "12/18/2019",
             "departureTime": "06:30",
+            "arrivalTime": "14:00",
             "status": "On Time",
             "gate": "H1"
         }
