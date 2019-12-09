@@ -31,9 +31,9 @@
                 color: white;
                 background: url("images/jetblue.jpg") rgb(0, 0, 0, 0.5) no-repeat center left;
                 background-size: 10%;
-                width: 80%;
-                margin-left: 10%;
-                margin-left: 10%;
+                width: 90%;
+                margin-left: 5%;
+                margin-left: 5%;
                 border: 1px solid white;
             }
         </style>
@@ -196,6 +196,7 @@
         </script>
     </head>
     <body>
+        <div id="dateDiv"></div>
         <h1 style="color: white">JetBlue Flights:</h1>
         <div id="jfk-flights">
             <h1 style="color:white">JFK (New York City, New York) Flights:</h1>
@@ -208,6 +209,13 @@
         <div id="lax-flights">
             <h1 style="color:white">LAX (Los Angeles, California) Flights:</h1>
         </div>
-
+        <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
+        </script>
     </body>
 </html>
