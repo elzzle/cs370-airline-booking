@@ -26,7 +26,7 @@
         
     </head>
 
-    <body style="background-color: white">
+    <body style="background: #f9f9f9">
         <script>
             //logs user out
             function logOutUser(){
@@ -55,28 +55,70 @@
 
             $(document).ready(function() {
                 $.getJSON("flights.json", function(data){
-                    var status_data = '';
+                    var departure_data = '';
+                    var arrival_data = '';
                     $.each(data, function(key, flights){
                         for(var i = 0; i < flights.length; i++){
                             if(flights[i].sourceAirport=="JFK" && flights[i].date == date){
-                                status_data += '<tr>';
-                                status_data += '<td>'+ flights[i].departureTime +'</td>';
-                                status_data += '<td>'+ flights[i].destinationAirport +'</td>';
-                                status_data += '<td>'+ flights[i].gate +'</td>';
+                                departure_data += '<tr>';
+                                departure_data += '<td>'+ flights[i].airline +'</td>';
+                                departure_data += '<td>'+ flights[i].departureTime +'</td>';
+                                departure_data += '<td>'+ flights[i].destinationAirport +'</td>';
+                                departure_data += '<td>'+ flights[i].gate +'</td>';
                                 if(flights[i].status === 'Boarding') {
-                                    status_data += '<td class="status">' + flights[i].status + '</td>';
+                                    departure_data += '<td class="status">' + flights[i].status + '</td>';
                                 } else if(flights[i].status === 'On Time') {
-                                    status_data += '<td class="status onTime">' + flights[i].status + '</td>';
+                                    departure_data += '<td class="status onTime">' + flights[i].status + '</td>';
                                 } else if(flights[i].status === 'Delayed') {
-                                    status_data += '<td class="status delayed">' + flights[i].status + '</td>';
+                                    departure_data += '<td class="status delayed">' + flights[i].status + '</td>';
                                 } else {
-                                    status_data += '<td class="status cancelled">' + flights[i].status + '</td>';
+                                    departure_data += '<td class="status cancelled">' + flights[i].status + '</td>';
                                 }
-                              status_data += '</tr>';
+                              departure_data += '</tr>';
+                            }
+
+                            else if(flights[i].destinationAirport=="JFK" && flights[i].date == date){
+                                arrival_data += '<tr>';
+                                arrival_data += '<td>'+ flights[i].airline +'</td>';
+                                arrival_data += '<td>'+ flights[i].arrivalTime +'</td>';
+                                arrival_data += '<td>'+ flights[i].sourceAirport +'</td>';
+                                arrival_data += '<td>'+ flights[i].gate +'</td>';
+                                if(flights[i].status === 'Boarding') {
+                                    arrival_data += '<td class="status">' + flights[i].status + '</td>';
+                                } else if(flights[i].status === 'On Time') {
+                                    arrival_data += '<td class="status onTime">' + flights[i].status + '</td>';
+                                } else if(flights[i].status === 'Delayed') {
+                                    arrival_data += '<td class="status delayed">' + flights[i].status + '</td>';
+                                } else {
+                                    arrival_data += '<td class="status cancelled">' + flights[i].status + '</td>';
+                                }
+                              arrival_data += '</tr>';
                             }
                         }
+
+                        // $.each(data, function(key, flights){
+                        // for(var i = 0; i < flights.length; i++){
+                        //     if(flights[i].sourceAirport=="JFK" && flights[i].date == date){
+                        //         arrival_data += '<tr>';
+                        //         arrival_data += '<td>'+ flights[i].airline +'</td>';
+                        //         arrival_data += '<td>'+ flights[i].departureTime +'</td>';
+                        //         arrival_data += '<td>'+ flights[i].destinationAirport +'</td>';
+                        //         arrival_data += '<td>'+ flights[i].gate +'</td>';
+                        //         if(flights[i].status === 'Boarding') {
+                        //             arrival_data += '<td class="status">' + flights[i].status + '</td>';
+                        //         } else if(flights[i].status === 'On Time') {
+                        //             arrival_data += '<td class="status onTime">' + flights[i].status + '</td>';
+                        //         } else if(flights[i].status === 'Delayed') {
+                        //             arrival_data += '<td class="status delayed">' + flights[i].status + '</td>';
+                        //         } else {
+                        //             arrival_data += '<td class="status cancelled">' + flights[i].status + '</td>';
+                        //         }
+                        //       arrival_data += '</tr>';
+                        //     }
+                        // }
                     });
-                    $('#status-table').append(status_data);
+                    $('#departure-status').append(departure_data);
+                    $('#arrival-status').append(arrival_data);
                 });
             });
 
@@ -84,11 +126,12 @@
         <div id="dateDiv"></div>
         <div class="flightStatus">
         <br/>
-        <h1>JFK Departure Flights Status</h1>
-        <br/>
-        <table id="status-table" class="statusContainer">
+            <img src="./images/jfk.jpg" width="200px" style="margin-bottom:15px" >
+        <h1>Departure Flights Status</h1>
+        <table class="statusContainer" id="departure-status" >
             <thead>
                 <tr>
+                    <th>Airline</th>
                     <th>Departure Time</th>
                     <th>Destination</th>
                     <th>Gate</th>
@@ -96,14 +139,29 @@
                 </tr>
             </thead>
         </table>
-        </div>
-        <script>
+        <br/>
+        <hr/>
+        <br/>
+        <h1>Arrival Flights Status</h1>
+        <table class="statusContainer" id="arrival-status">
+            <thead>
+                <tr>
+                    <th>Airline</th>
+                    <th>arrival Time</th>
+                    <th>Origin</th>
+                    <th>Gate</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>
             var currDateDiv = document.getElementById("dateDiv");
             var currentDate = sessionStorage.getItem("todaysDate");
             var dateDisplay = document.createElement("h2");
-            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.setAttribute("style", "color:black" );
             dateDisplay.innerHTML = "Current Date: " + currentDate;
             currDateDiv.appendChild(dateDisplay);
-        </script>
+    </script>
     </body>
 </html>
