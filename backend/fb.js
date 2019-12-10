@@ -35,6 +35,7 @@ $("#login-btn").click(function(){
       .catch(function(error){ 
           var errMsg = error.message;
           console.log(errMsg);
+          window.alert("Incorrect Username/Password.")
       });
   }
   else window.alert("Please fill out all fields.")
@@ -72,6 +73,7 @@ $("#signup-btn").click(function(){
     .catch(function(error){ 
         var errMsg = error.message;
         console.log(errMsg);
+        window.alert("This username is already taken.")
     });
   }
   else window.alert("Please fill out all fields.");
