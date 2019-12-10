@@ -53,10 +53,10 @@
             currDateDiv.appendChild(dateDisplay);
         firebase.auth().onAuthStateChanged(function(user){
             if(user){
-                console.log("sucksess");
-                window.location.href="test.html";
+                console.log("Signed in");
+                window.location.href="frontpage.html";
             }
-            else console.log("fuCKKKKKKKK");
+            else console.log("Not Signed In");
         });
         </script>
     </body>

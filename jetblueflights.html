@@ -78,12 +78,14 @@
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
                         const flightNumber = flights[i].number;
+                        const flightCapacity = flights[i].numSeats;
+                        const seatsBooked = flights[i].seatsTaken;
                         var resultID = jfkResultID + ++jfkResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
                         bookBtn.onclick=function(){
-                            bookFlight(flightNumber);
+                            bookFlight(flightNumber, seatsBooked, flightCapacity);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
@@ -106,12 +108,14 @@
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
                         const flightNumber = flights[i].number;
+                        const flightCapacity = flights[i].numSeats;
+                        const seatsBooked = flights[i].seatsTaken;
                         var resultID = ordResultID + ++ordResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
                         bookBtn.onclick=function(){
-                            bookFlight(flightNumber);
+                            bookFlight(flightNumber, seatsBooked, flightCapacity);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
@@ -134,13 +138,15 @@
                         var result = document.createElement("div");
                         var bookBtn = document.createElement("button");
                         const flightNumber = flights[i].number;
+                        const flightCapacity = flights[i].numSeats;
+                        const seatsBooked = flights[i].seatsTaken;
                         var resultID = laxResultID + ++laxResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
                         //bookBtn.onclick = bookFlight(flights[i].number);
                         bookBtn.onclick=function(){
-                            bookFlight(flightNumber);
+                            bookFlight(flightNumber, seatsBooked, flightCapacity);
                         }
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
@@ -155,10 +161,14 @@
                 }
             });
 
-            function bookFlight(flightNum){
+            function bookFlight(flightNum, numBooked, maxSeats){
                 firebase.auth().onAuthStateChanged(function(user) {
                     if (user) {
                         // User is signed in.
+                        if(numBooked==maxSeats){
+                            window.alert("Flight is full. Sorry!");
+                            return;
+                        }
                         var db = firebase.firestore();
                         var user = firebase.auth().currentUser;
                         var uid= user.uid;
@@ -181,6 +191,7 @@
                                             "flightsBooked": userFlights,
                                         })
                                         console.log(userFlights);
+                                        window.alert("Flight Booked!");
                                     });
                                 })
                                 .catch(function(error) {

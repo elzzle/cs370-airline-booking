@@ -23,38 +23,6 @@
             <a class="btn btn-danger" href="signup.html">Sign Up</a>
         </div>
      </nav>
-
-     <script>
-        /* $("#signup-btn").click(function(){
-    
-            var signupEmail = $("#signup-email").val();
-            var signupPw= $("#signup-pw").val();
-            console.log(signupEmail + " " + signupPw)
-  
-            if(signupEmail!="" && signupPw!=""){
-            firebase.auth().createUserWithEmailAndPassword(signupEmail, signupPw)
-            .then(user => {
-                window.location.href="test2.html";
-                firebase.auth().signInWithEmailAndPassword(signupEmail, signupPw);
-                var userUid = auth.currentUser.uid;
-                var db = firebase.firestore();
-  
-                db.collection('users').doc(userUid).set({
-                    email: signupEmail,
-                    emailVerified: false,
-                    online: false,
-                    onlock: false,
-                    password: signupPw
-                });
-            })
-            .catch(function(error){ 
-                var errMsg = error.message;
-                 console.log(errMsg);
-            });
-            }
-            else window.alert("Please fill out all fields.");
-        });*/
-     </script>
     </head>
     <body>
             <div id="dateDiv"></div>
@@ -77,6 +45,7 @@
        
         <script src="backend/fb.js"></script>
         <script>
+
             var currDateDiv = document.getElementById("dateDiv");
             var currentDate = sessionStorage.getItem("todaysDate");
             var dateDisplay = document.createElement("h2");
