@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link rel="stylesheet" href="styles.css">
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-storage.js"></script>
+            <script src="backend/fb.js"></script>
+            <title>Admin: Add a Flight</title>
+
+            <nav class="navbar navbar-light" style="background-color: #14277e;">
+                    <a class="navbar-brand" href="frontpage.html">
+                        <img class="logo" src="images/logo.svg" alt="AirBook SVG" width="80" height="80" onerror="this.removeAttribute('onerror'); this.src='images/logo.svg'" />
+                    </a>
+                    <div class="logsign-container">
+                        <a id="loginBtn" class="btn btn-danger" href="login.html">Login</a>
+                        <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
+                        <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
+                        <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
+                    </div>
+            </nav>
+            <style>
+                .addflight-container{
+                    background-color: rgb(0,0,0,0.7);
+                    border: 1px solid white;
+                    color: white;
+                    text-align: center;
+                    max-width: 800px;
+                    position: absolute;
+                    top: 25%;
+                    right: 35%;
+                }
+
+                    .addflight-container input{
+                    align-self: center;
+                }
+            </style>
+    </head>
+    <body style="color:#f9f9f9">
+        <div class="addflight-container">
+                <h3>Add a Flight</h3>
+                <p>Please fill out the fields to add a flight.</p>
+                <hr>
+                <select id="flight-airline" type="text" name="depart" class="form-control" required>
+                    <option value="0" disabled="disabled" selected="selected">Airline...</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="Delta Airlines">Delta</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="Jetblue">Jetblue</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="United Airlines">United</option>
+                </select>
+                <br>
+                <br>
+                <select id="flight-source" type="text" name="depart" class="form-control" required>
+                    <option value="0" disabled="disabled" selected="selected">Leaving From...</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="JFK">JFK (New York)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="ORD">ORD (Chicago)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="LAX">LAX (Los Angeles)</option>
+                </select>
+                <br>
+                <br>
+                <select id="flight-dest" type="text" name="depart" class="form-control" required>
+                    <option value="0" disabled="disabled" selected="selected">Going to...</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="JFK">JFK (New York)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="ORD">ORD (Chicago)</option>
+                    <option style="background-color: rgb(0,0,0,0.5);" value="LAX">LAX (Los Angeles)</option>
+                </select>
+                <br>
+                <br>
+                <label for="the-flight-date">Flight Date</label>
+                <input type="date" id="flight-date" class="form-control" required>
+                <br>
+                <br>
+                <label for="the-flight-time">Time (Military):</label>
+                <input name="the-flight-time" type="text" id="flight-time" required>
+                <br>
+                <br>
+                <label for="the-flight-gate">Gate:</label>
+                <input name="the-flight-gate" type="text" id="flight-gate">
+                <br>
+                <br>
+                <label for="the-flight-capacity">Capacity:</label>
+                <input name="the-flight-capacity" id="flight-capacity" type="text">
+                <br>
+                <br>
+                <button id="add-flight-btn" class="btn btn-success">Add Flight</button>
+            </div>
+    </body>
+    <script>
+
+        firebase.auth().onAuthStateChanged(function(user){
+            if(user){
+                document.getElementById('loginBtn').style.display='none';
+                document.getElementById('signupBtn').style.display='none';
+                document.getElementById('logoutBtn').style.display='inline';
+                document.getElementById('myFlights').style.display='inline';
+            }
+            else {
+                document.getElementById('loginBtn').style.display='inline';
+                document.getElementById('signupBtn').style.display='inline';
+                document.getElementById('logoutBtn').style.display='none';
+                document.getElementById('myFlights').style.display='none';
+            }
+        });
+        document.getElementById("add-flight-btn").onclick=function(){
+            var airline = $("#flight-airline").val();
+            var source = $("#flight-source").val();
+            var destination = $("#flight-dest").val();
+            var date = $("#flight-date").val();
+            var time = $("#flight-time").val();
+            var gate = $("#flight-gate").val();
+            var capacity = $("#flight-capacity").val();
+            var status = "On Time";
+            var seatsTaken="0";
+            var flightLength;
+            if((source == "JFK" && destination == "ORD") || (source == "ORD" && destination == "JFK")) flightLength = "130";
+            else if((source == "JFK" && destination == "LAX") || (source == "LAX" && destination == "JFK")) flightLength = "270";
+            else if((source == "ORD" && destination == "LAX") || (source == "LAX" && destination == "ORD")) flightLength = "150";
+            var sourceCity;
+            if(source=="JFK") sourceCity = "New York City";
+            else if(source=="ORD") sourceCity = "Chicgo";
+            else if(source=="LAX") sourceCity = "Los Angeles";
+            var destinationCity;
+            if(destination=="JFK") destinationCity = "New York City";
+            else if(destination=="ORD") destinationCity = "Chicago";
+            else if(destination=="LAX") destinationCity = "Los Angeles";
+            var arrivalTime=computeArrivalTime(time, flightLength);
+            var flightNum = "";
+            var flights=JSON.parse(localStorage.getItem("flights"));
+            var newFlightNum = flights.length+1;
+            flightNum +=newFlightNum;
+            var newFlight={
+                "airline": airline,
+                "number": flightNum,
+                "sourceAirport": source,
+                "destinationAirport": destination,
+                "sourceCity": sourceCity,
+                "destinationCity": destinationCity,
+                "flightLength": flightLength,
+                "numSeats": capacity,
+                "seatsTaken": seatsTaken,
+                "date": date,
+                "departureTime": time,
+                "arrivalTime": arrivalTime,
+                "status": status,
+                "gate": gate
+            }
+            flights.push(newFlight);
+            localStorage.setItem("flights", JSON.stringify(flights));
+            var flights5=JSON.parse(localStorage.getItem("flights"));
+            console.log(flights5);
+            window.alert("Flight added.")
+        }
+        JSON.parse(localStorage.getItem("flights"));
+
+        function computeArrivalTime(flightTime, flightLength){
+            var flightLengthInt = parseInt(flightLength, 10);
+            var flightLengthHrs=Math.floor(flightLengthInt/60);
+            var flightLengthMins=flightLengthInt%60;
+            var flightHr = parseInt(flightTime.substring(0,1));
+            var flightMins = parseInt(flightTime.substring(3, 4));
+            var arrivalHr = flightHr+flightLengthHrs;
+            if(arrivalHr >=24) arrivalHr=arrivalHr-24;
+            var arrivalMins = flightMins + flightLengthMins;
+            if(arrivalMins >=60){
+                arrivalMins = arrivalMins-60;
+                arrivalHr++;
+                if(arrivalHr>=24) arrivalHr=ArrivalHr-24;
+            }
+            var result;
+            if(arrivalHr<10) result="0";
+            else result="";
+
+            result+=arrivalHr;
+            result+=":";
+            result+=arrivalMins;
+            return result;
+        }
+    </script>
+</html>

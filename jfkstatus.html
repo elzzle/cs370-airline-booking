@@ -47,7 +47,7 @@
 
     // Get current date
 
-    var date = sessionStorage.getItem("todaysDate");
+    var date =sessionStorage.getItem("todaysDate");
 
     // Display flights.json data into a table
 
@@ -59,38 +59,39 @@
             $.each(data, function(key, flights) {
                 current_date += '<h2>' + date + '</h2>'
                 // console.log(current_date)
-                for (var i = 0; i < flights.length; i++) {
-                    if (flights[i].sourceAirport == "JFK" && flights[i].date == date) {
+                var updatedFlights=JSON.parse(localStorage.getItem("flights"));
+                for (var i = 0; i < updatedFlights.length; i++) {
+                    if (updatedFlights[i].sourceAirport == "JFK" && updatedFlights[i].date == date) {
                         departure_data += '<tr>';
-                        departure_data += '<td>' + flights[i].airline + '</td>';
-                        departure_data += '<td>' + flights[i].departureTime + '</td>';
-                        departure_data += '<td>' + flights[i].destinationAirport + '</td>';
-                        departure_data += '<td>' + flights[i].gate + '</td>';
-                        if (flights[i].status === 'Boarding') {
-                            departure_data += '<td class="status">' + flights[i].status + '</td>';
-                        } else if (flights[i].status === 'On Time') {
-                            departure_data += '<td class="status onTime">' + flights[i].status + '</td>';
-                        } else if (flights[i].status === 'Delayed') {
-                            departure_data += '<td class="status delayed">' + flights[i].status + '</td>';
+                        departure_data += '<td>' + updatedFlights[i].airline + '</td>';
+                        departure_data += '<td>' + updatedFlights[i].departureTime + '</td>';
+                        departure_data += '<td>' + updatedFlights[i].destinationAirport + '</td>';
+                        departure_data += '<td>' + updatedFlights[i].gate + '</td>';
+                        if (updatedFlights[i].status === 'Boarding') {
+                            departure_data += '<td class="status">' + updatedFlights[i].status + '</td>';
+                        } else if (updatedFlights[i].status === 'On Time') {
+                            departure_data += '<td class="status onTime">' + updatedFlights[i].status + '</td>';
+                        } else if (updatedFlights[i].status === 'Delayed') {
+                            departure_data += '<td class="status delayed">' + updatedFlights[i].status + '</td>';
                         } else {
-                            departure_data += '<td class="status cancelled">' + flights[i].status + '</td>';
+                            departure_data += '<td class="status cancelled">' + updatedFlights[i].status + '</td>';
                         }
                         departure_data += '</tr>';
-                    } else if (flights[i].destinationAirport == "JFK" && flights[i].date == date) {
+                    } else if (updatedFlights[i].destinationAirport == "JFK" && updatedFlights[i].date == date) {
 
                         arrival_data += '<tr>';
-                        arrival_data += '<td>' + flights[i].airline + '</td>';
-                        arrival_data += '<td>' + flights[i].arrivalTime + '</td>';
-                        arrival_data += '<td>' + flights[i].sourceAirport + '</td>';
-                        arrival_data += '<td>' + flights[i].gate + '</td>';
-                        if (flights[i].status === 'Boarding') {
-                            arrival_data += '<td class="status">' + flights[i].status + '</td>';
-                        } else if (flights[i].status === 'On Time') {
-                            arrival_data += '<td class="status onTime">' + flights[i].status + '</td>';
-                        } else if (flights[i].status === 'Delayed') {
-                            arrival_data += '<td class="status delayed">' + flights[i].status + '</td>';
+                        arrival_data += '<td>' + updatedFlights[i].airline + '</td>';
+                        arrival_data += '<td>' + updatedFlights[i].arrivalTime + '</td>';
+                        arrival_data += '<td>' + updatedFlights[i].sourceAirport + '</td>';
+                        arrival_data += '<td>' + updatedFlights[i].gate + '</td>';
+                        if (updatedFlights[i].status === 'Boarding') {
+                            arrival_data += '<td class="status">' + updatedFlights[i].status + '</td>';
+                        } else if (updatedFlights[i].status === 'On Time') {
+                            arrival_data += '<td class="status onTime">' + updatedFlights[i].status + '</td>';
+                        } else if (updatedFlights[i].status === 'Delayed') {
+                            arrival_data += '<td class="status delayed">' + updatedFlights[i].status + '</td>';
                         } else {
-                            arrival_data += '<td class="status cancelled">' + flights[i].status + '</td>';
+                            arrival_data += '<td class="status cancelled">' + updatedFlights[i].status + '</td>';
                         }
                         arrival_data += '</tr>';
                     }

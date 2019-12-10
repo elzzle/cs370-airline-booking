@@ -23,6 +23,7 @@
                 <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
                 <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
                 <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
+                <a id="adminView" class="btn btn-warning" href="adminview.html">ADMIN VIEW</a>
             </div>
         </nav>
         <style>
@@ -37,8 +38,29 @@
                 border: 1px solid white;
             }
         </style>
+    </head>
+    <body>
+        <div id="dateDiv"></div>
+        <h1 style="color: white">JetBlue Flights:</h1>
+        <div id="jfk-flights">
+            <h1 style="color:white">JFK (New York City, New York) Flights:</h1>
+        </div>
+        <br>
+        <div id="ord-flights">
+            <h1 style="color:white">ORD (Chicago, Illinois) Flights:</h1>
+        </div>
+        <br>
+        <div id="lax-flights">
+            <h1 style="color:white">LAX (Los Angeles, California) Flights:</h1>
+        </div>
+        <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
 
-        <script type="text/javascript">
             //logs user out
             function logOutUser(){
                 firebase.auth().signOut();
@@ -52,6 +74,9 @@
                     document.getElementById('signupBtn').style.display='none';
                     document.getElementById('logoutBtn').style.display='inline';
                     document.getElementById('myFlights').style.display='inline';
+                    var userEmail = firebase.auth().currentUser.email;
+                    if(userEmail=="admin@airbook.com") document.getElementById('adminView').style.display="inline";
+                    else document.getElementById('adminView').style.display="none";
                 }
                 else {
                     //user is not logged in
@@ -59,14 +84,15 @@
                     document.getElementById('signupBtn').style.display='inline';
                     document.getElementById('logoutBtn').style.display='none';
                     document.getElementById('myFlights').style.display='none';
+                    document.getElementById('adminView').style.display="none";
                 }
             });
 
-            var flights;
+            
             /*this function is retrieving the JSON data, and inside the function it's
             storing all of the data into the "flights" var that was declared above.*/
-            $.getJSON("flights.json", function(json) {
-                flights=json.flights;
+            //$.getJSON("flights.json", function(json) {
+                var flights=JSON.parse(localStorage.getItem("flights"));
                 var jfkDiv = document.getElementById('jfk-flights');
                 var jfkResultCounter=0;
                 const jfkResultID="jfk-result-"
@@ -80,12 +106,13 @@
                         const flightNumber = flights[i].number;
                         const flightCapacity = flights[i].numSeats;
                         const seatsBooked = flights[i].seatsTaken;
+                        const status = flights[i].status;
                         var resultID = jfkResultID + ++jfkResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
                         bookBtn.onclick=function(){
-                            bookFlight(flightNumber, seatsBooked, flightCapacity);
+                            bookFlight(flightNumber, seatsBooked, flightCapacity, status);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
@@ -110,12 +137,13 @@
                         const flightNumber = flights[i].number;
                         const flightCapacity = flights[i].numSeats;
                         const seatsBooked = flights[i].seatsTaken;
+                        const status = flights[i].status;
                         var resultID = ordResultID + ++ordResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
                         bookBtn.onclick=function(){
-                            bookFlight(flightNumber, seatsBooked, flightCapacity);
+                            bookFlight(flightNumber, seatsBooked, flightCapacity, status);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
@@ -140,13 +168,14 @@
                         const flightNumber = flights[i].number;
                         const flightCapacity = flights[i].numSeats;
                         const seatsBooked = flights[i].seatsTaken;
+                        const status= flights[i].status;
                         var resultID = laxResultID + ++laxResultCounter;
                         result.setAttribute("id", resultID);
                         result.setAttribute("class", "jetblue-page-result");
                         bookBtn.setAttribute("class", "btn btn-danger");
                         //bookBtn.onclick = bookFlight(flights[i].number);
                         bookBtn.onclick=function(){
-                            bookFlight(flightNumber, seatsBooked, flightCapacity);
+                            bookFlight(flightNumber, seatsBooked, flightCapacity, status);
                         }
                         var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
                         result.innerHTML = resultContent;
@@ -159,14 +188,18 @@
                         laxDiv.appendChild(hr1);
                     }
                 }
-            });
+            //});
 
-            function bookFlight(flightNum, numBooked, maxSeats){
+            function bookFlight(flightNum, numBooked, maxSeats, flightStatus){
                 firebase.auth().onAuthStateChanged(function(user) {
                     if (user) {
                         // User is signed in.
                         if(numBooked==maxSeats){
                             window.alert("Flight is full. Sorry!");
+                            return;
+                        }
+                        if(flightStatus=="Cancelled"){
+                            window.alert("Flight has been Cancelled. Sorry!");
                             return;
                         }
                         var db = firebase.firestore();
@@ -204,29 +237,6 @@
                     }
                     });
                 }
-        </script>
-    </head>
-    <body>
-        <div id="dateDiv"></div>
-        <h1 style="color: white">JetBlue Flights:</h1>
-        <div id="jfk-flights">
-            <h1 style="color:white">JFK (New York City, New York) Flights:</h1>
-        </div>
-        <br>
-        <div id="ord-flights">
-            <h1 style="color:white">ORD (Chicago, Illinois) Flights:</h1>
-        </div>
-        <br>
-        <div id="lax-flights">
-            <h1 style="color:white">LAX (Los Angeles, California) Flights:</h1>
-        </div>
-        <script>
-            var currDateDiv = document.getElementById("dateDiv");
-            var currentDate = sessionStorage.getItem("todaysDate");
-            var dateDisplay = document.createElement("h2");
-            dateDisplay.setAttribute("style", "color:white" );
-            dateDisplay.innerHTML = "Current Date: " + currentDate;
-            currDateDiv.appendChild(dateDisplay);
         </script>
     </body>
 </html>

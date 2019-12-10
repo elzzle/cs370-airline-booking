@@ -64,7 +64,7 @@
             "date": "2019-12-14",
             "departureTime": "14:30",
             "arrivalTime": "16:00",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "A4"
         },
         {
@@ -80,7 +80,7 @@
             "date": "2019-12-15",
             "departureTime": "03:15",
             "arrivalTime": "04:45",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "A5"
         },
         {
@@ -96,7 +96,7 @@
             "date": "2019-12-15",
             "departureTime": "08:15",
             "arrivalTime": "09:45",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "B1"
         },
         {
@@ -112,7 +112,7 @@
             "date": "2019-12-13",
             "departureTime": "09:45",
             "arrivalTime": "09:55",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "B2"
         },
         {
@@ -128,7 +128,7 @@
             "date": "2019-12-20",
             "departureTime": "10:30",
             "arrivalTime": "12:40",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "B3"
         },
         {
@@ -144,7 +144,7 @@
             "date": "2019-12-25",
             "departureTime": "17:10",
             "arrivalTime": "19:20",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "B4"
         },
         {
@@ -160,7 +160,7 @@
             "date": "2019-12-24",
             "departureTime": "23:55",
             "arrivalTime": "02:05",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "B5"
         },
         {
@@ -176,7 +176,7 @@
             "date": "2019-12-13",
             "departureTime": "13:15",
             "arrivalTime": "15:25",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "C1"
         },
         {
@@ -192,7 +192,7 @@
             "date": "2019-12-20",
             "departureTime": "20:15",
             "arrivalTime": "22:25",
-            "status": "Cancelled",
+            "status": "On Time",
             "gate": "C2"
         },
         {
@@ -208,7 +208,7 @@
             "date": "2019-12-15",
             "departureTime": "01:10",
             "arrivalTime": "01:40",
-            "status": "Cancelled",
+            "status": "On Time",
             "gate": "C3"
         },
         {
@@ -224,7 +224,7 @@
             "date": "2019-12-20",
             "departureTime": "07:20",
             "arrivalTime": "07:50",
-            "status": "Cancelled",
+            "status": "On Time",
             "gate": "C4"
         },
         {
@@ -240,7 +240,7 @@
             "date": "2019-12-15",
             "departureTime": "10:30",
             "arrivalTime": "11:00",
-            "status": "Cancelled",
+            "status": "On Time",
             "gate": "C5"
         },
         {
@@ -256,7 +256,7 @@
             "date": "2019-12-23",
             "departureTime": "01:10",
             "arrivalTime": "01:40",
-            "status": "Cancelled",
+            "status": "On Time",
             "gate": "D1"
         },
         {
@@ -352,7 +352,7 @@
             "date": "2019-12-24",
             "departureTime": "13:30",
             "arrivalTime": "15:30",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "E2"
         },
         {
@@ -368,7 +368,7 @@
             "date": "2019-12-17",
             "departureTime": "14:40",
             "arrivalTime": "16:40",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "E3"
         },
         {
@@ -384,7 +384,7 @@
             "date": "2019-12-18",
             "departureTime": "18:30",
             "arrivalTime": "20:30",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "E4"
         },
         {
@@ -400,7 +400,7 @@
             "date": "2019-12-20",
             "departureTime": "09:10",
             "arrivalTime": "13:40",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "E5"
         },
         {
@@ -416,7 +416,7 @@
             "date": "2019-12-15",
             "departureTime": "08:30",
             "arrivalTime": "13:00",
-            "status": "Delayed",
+            "status": "On Time",
             "gate": "F1"
         },
         {
@@ -432,7 +432,7 @@
             "date": "2019-12-28",
             "departureTime": "15:20",
             "arrivalTime": "19:50",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "F2"
         },
         {
@@ -448,7 +448,7 @@
             "date": "2019-12-14",
             "departureTime": "04:10",
             "arrivalTime": "08:40",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "F3"
         },
         {
@@ -464,7 +464,7 @@
             "date": "2019-12-20",
             "departureTime": "06:10",
             "arrivalTime": "10:30",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "F4"
         },
         {
@@ -480,7 +480,7 @@
             "date": "2019-12-23",
             "departureTime": "09:10",
             "arrivalTime": "13:40",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "F5"
         },
         {
@@ -496,7 +496,7 @@
             "date": "2019-12-20",
             "departureTime": "09:10",
             "arrivalTime": "16:40",
-            "status": "Boarding",
+            "status": "On Time",
             "gate": "G1"
         },
         {

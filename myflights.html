@@ -22,6 +22,7 @@
                     <a id="signupBtn" class="btn btn-danger" href="signup.html">Sign Up</a>
                     <button id="logoutBtn" class="btn btn-danger" onclick="logOutUser()">Log out</button>
                     <a id="myFlights" class="btn btn-danger" href="myflights.html">My Flights</a>
+                    <a id="adminView" class="btn btn-warning" href="adminview.html">ADMIN VIEW</a>
                 </div>
             </nav>
             <style>
@@ -58,9 +59,21 @@
                 border: 1px solid white;
             }
             </style>
-            <script type="text/javascript">
-                //logs user out
-                function logOutUser(){
+    </head>
+    <body>
+        <div id="dateDiv"></div>
+        <h1 style="color: white">Your booked flights:</h1>
+        <div id="my-flights"></div>
+        <script>
+            var currDateDiv = document.getElementById("dateDiv");
+            var currentDate = sessionStorage.getItem("todaysDate");
+            var dateDisplay = document.createElement("h2");
+            dateDisplay.setAttribute("style", "color:white" );
+            dateDisplay.innerHTML = "Current Date: " + currentDate;
+            currDateDiv.appendChild(dateDisplay);
+
+            //logs user out
+            function logOutUser(){
                     firebase.auth().signOut();
                     window.location.href="frontpage.html"
                 }
@@ -71,19 +84,23 @@
                         document.getElementById('signupBtn').style.display='none';
                         document.getElementById('logoutBtn').style.display='inline';
                         document.getElementById('myFlights').style.display='inline';
+                        var userEmail = firebase.auth().currentUser.email;
+                        if(userEmail=="admin@airbook.com") document.getElementById('adminView').style.display="inline";
+                        else document.getElementById('adminView').style.display="none";
                     }
                     else {
                         document.getElementById('loginBtn').style.display='inline';
                         document.getElementById('signupBtn').style.display='inline';
                         document.getElementById('logoutBtn').style.display='none';
                         document.getElementById('myFlights').style.display='none';
+                        document.getElementById('adminView').style.display="none";
                     }
                 });
 
-                var flights;
+                
 
-            $.getJSON("flights.json", function(json){
-                flights=json.flights;
+            //$.getJSON("flights.json", function(json){
+                console.log(flights);
                 var myFlights = document.getElementById('my-flights');
                 firebase.auth().onAuthStateChanged(function(user){
                     if(user){
@@ -97,6 +114,7 @@
                             .then(function(querySnapshot) {
                                 querySnapshot.forEach(function(doc) {
                                     // doc.data() is never undefined for query doc snapshots
+                                    var flights =JSON.parse(localStorage.getItem("flights"));
                                     var data=doc.data();
                                     var userFlights = data.flightsBooked;
                                     for(var i=0; i<userFlights.length; i++){
@@ -117,7 +135,12 @@
                                                 cancelBtn.innerHTML = "Cancel Reservation";
                                                 var br1 = document.createElement("br");
                                                 var hr1 = document.createElement("hr");
+                                                var br2=document.createElement("br");
+                                                var statusP = document.createElement("p");
+                                                statusP.innerHTML="STATUS: "+flights[j].status;
                                                 result.appendChild(br1);
+                                                result.appendChild(statusP)
+                                                result.appendChild(br2);
                                                 result.appendChild(cancelBtn);
                                                 myFlights.appendChild(result);
                                                 myFlights.appendChild(hr1);
@@ -134,7 +157,7 @@
                             //user is not signed in
                         }
                     });
-                });
+                //});
 
                 function cancelReservation(flightNum){
                     firebase.auth().onAuthStateChanged(function(user){
@@ -168,19 +191,6 @@
                         }
                     })
                 }
-            </script>
-    </head>
-    <body>
-        <div id="dateDiv"></div>
-        <h1 style="color: white">Your booked flights:</h1>
-        <div id="my-flights"></div>
-        <script>
-            var currDateDiv = document.getElementById("dateDiv");
-            var currentDate = sessionStorage.getItem("todaysDate");
-            var dateDisplay = document.createElement("h2");
-            dateDisplay.setAttribute("style", "color:white" );
-            dateDisplay.innerHTML = "Current Date: " + currentDate;
-            currDateDiv.appendChild(dateDisplay);
         </script>
     </body>
 </html>
