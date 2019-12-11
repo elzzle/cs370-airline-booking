@@ -75,16 +75,16 @@
                 <input type="date" id="flight-date" class="form-control" required>
                 <br>
                 <br>
-                <label for="the-flight-time">Time (Military):</label>
+                <label for="the-flight-time">Time (24hr):</label>
                 <input name="the-flight-time" type="text" id="flight-time" required>
                 <br>
                 <br>
                 <label for="the-flight-gate">Gate:</label>
-                <input name="the-flight-gate" type="text" id="flight-gate">
+                <input name="the-flight-gate" type="text" id="flight-gate" required>
                 <br>
                 <br>
                 <label for="the-flight-capacity">Capacity:</label>
-                <input name="the-flight-capacity" id="flight-capacity" type="text">
+                <input name="the-flight-capacity" id="flight-capacity" type="text" required>
                 <br>
                 <br>
                 <button id="add-flight-btn" class="btn btn-success">Add Flight</button>
@@ -117,6 +117,26 @@
             var status = "On Time";
             var seatsTaken="0";
             var flightLength;
+            if(source==null||destination==null||airline==null||date==""||time==""||gate==""||capacity==""){
+                window.alert("All fields must be filled out.");
+                return;
+            }
+            if(source==destination){
+                window.alert("You cannot have a flight from " + source +" to "+ destination+", as they are the same airport.");
+                return;
+            }
+            if(time.length!=5 || time.charAt(2)!=':' || isNaN(time.substring(0,1)) || isNaN(time.substring(3,4))){
+                window.alert("Time must be in xx:xx format with valid numbers.")
+                return;
+            }
+            if((parseInt(time.substring(0,2), 10)>23) || (parseInt(time.substring(3,5), 10)>59)){
+                window.alert("Not a valid time.");
+                return;
+            }
+            if(isNaN(capacity)){
+                window.alert("Flight capacity must be a number.");
+                return;
+            }
             if((source == "JFK" && destination == "ORD") || (source == "ORD" && destination == "JFK")) flightLength = "130";
             else if((source == "JFK" && destination == "LAX") || (source == "LAX" && destination == "JFK")) flightLength = "270";
             else if((source == "ORD" && destination == "LAX") || (source == "LAX" && destination == "ORD")) flightLength = "150";
@@ -161,8 +181,8 @@
             var flightLengthInt = parseInt(flightLength, 10);
             var flightLengthHrs=Math.floor(flightLengthInt/60);
             var flightLengthMins=flightLengthInt%60;
-            var flightHr = parseInt(flightTime.substring(0,1));
-            var flightMins = parseInt(flightTime.substring(3, 4));
+            var flightHr = parseInt(flightTime.substring(0,2));
+            var flightMins = parseInt(flightTime.substring(3, 5));
             var arrivalHr = flightHr+flightLengthHrs;
             if(arrivalHr >=24) arrivalHr=arrivalHr-24;
             var arrivalMins = flightMins + flightLengthMins;
