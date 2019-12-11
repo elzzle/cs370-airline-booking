@@ -108,7 +108,7 @@
                 if(flights[i].airline=="Delta Airlines") result.setAttribute("class", "delta-page-result");
                 else if(flights[i].airline == "Jetblue") result.setAttribute("class", "jetblue-page-result");
                 else if(flights[i].airline == "United Airlines") result.setAttribute("class", "united-page-result");
-                var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "⟶" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "​     | " + "Flight Number: " + flights[i].number + " | " + "Date: " + flights[i].date + " | " + "Time: " + flights[i].departureTime + " | " + "Flight Length: " + flights[i].flightLength + " minutes ";
                 result.innerHTML = resultContent;
                 cancelFlight.onclick=function(){
                     flights2=JSON.parse(localStorage.getItem("flights"))

@@ -130,7 +130,7 @@
                                                 if(flights[j].airline=="Delta Airlines") result.setAttribute("class", "delta-page-result");
                                                 else if(flights[j].airline == "Jetblue") result.setAttribute("class", "jetblue-page-result");
                                                 else if(flights[j].airline == "United Airlines") result.setAttribute("class", "united-page-result");
-                                                var resultContent = flights[j].sourceAirport + " (" + flights[j].sourceCity + ")" + "-->" + flights[j].destinationAirport + " (" + flights[j].destinationCity + ")"+ "  " + "Flight Number:" + flights[j].number + "  " + "Date:" + flights[j].date + "  " + "Time:" + flights[j].departureTime + "  " + "Flight Length:" + flights[j].flightLength + " minutes";
+                                                var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "⟶" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "​     | " + "Flight Number: " + flights[i].number + " | " + "Date: " + flights[i].date + " | " + "Time: " + flights[i].departureTime + " | " + "Flight Length: " + flights[i].flightLength + " minutes ";
                                                 result.innerHTML = resultContent;
                                                 cancelBtn.innerHTML = "Cancel Reservation";
                                                 var br1 = document.createElement("br");
