@@ -3,8 +3,8 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
@@ -113,7 +113,7 @@
                             bookFlight(flightNumber, seatsBooked, flightCapacity, status);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ " | " + "Flight Number: " + flights[i].number + " | " + "Date: " + flights[i].date + " | " + "Time: " + flights[i].departureTime + " | " + "Flight Length: " + flights[i].flightLength + " minutes ";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -144,7 +144,7 @@
                             bookFlight(flightNumber, seatsBooked, flightCapacity, status);
                         }
                         //bookBtn.onclick = bookFlight(flights[i].number);
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ " | " + "Flight Number: " + flights[i].number + " | " + "Date: " + flights[i].date + " | " + "Time: " + flights[i].departureTime + " | " + "Flight Length: " + flights[i].flightLength + " minutes ";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
@@ -175,7 +175,7 @@
                         bookBtn.onclick=function(){
                             bookFlight(flightNumber, seatsBooked, flightCapacity, status);
                         }
-                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ "  " + "Flight Number:" + flights[i].number + "  " + "Date:" + flights[i].date + "  " + "Time:" + flights[i].departureTime + "  " + "Flight Length:" + flights[i].flightLength + " minutes";
+                        var resultContent = flights[i].sourceAirport + " (" + flights[i].sourceCity + ")" + "-->" + flights[i].destinationAirport + " (" + flights[i].destinationCity + ")"+ " | " + "Flight Number: " + flights[i].number + " | " + "Date: " + flights[i].date + " | " + "Time: " + flights[i].departureTime + " | " + "Flight Length: " + flights[i].flightLength + " minutes ";
                         result.innerHTML = resultContent;
                         bookBtn.innerHTML = "Book";
                         var br1 = document.createElement("br");
