@@ -4,8 +4,8 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="styles.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
@@ -83,7 +83,7 @@
         <div class="booking-form">
                 <label>Flying From</label>
                 <select id="flying-from" type="text" name="depart" class="form-control">
-                    <option value="0" disabled="disabled" selected="selected">Leaving From...</option>
+                    <option value="0" selected="selected" disabled>Leaving From...</option>
                     <option style="background-color: rgb(0,0,0,0.5);" value="JFK">JFK (New York)</option>
                     <option style="background-color: rgb(0,0,0,0.5);" value="ORD">ORD (Chicago)</option>
                     <option style="background-color: rgb(0,0,0,0.5);" value="LAX">LAX (Los Angeles)</option>
@@ -91,7 +91,7 @@
 
                 <label>Flying To</label>
                 <select id="flying-to" type="text" name="destination" class="form-control">
-                    <option value="0" disabled="disabled" selected="selected">Going To...</option>
+                    <option value="0" selected="selected" disabled>Going To...</option>
                     <option style="background-color: rgb(0,0,0,0.5);" value="JFK">JFK (New York)</option>
                     <option style="background-color: rgb(0,0,0,0.5);" value="ORD">ORD (Chicago)</option>
                     <option style="background-color: rgb(0,0,0,0.5);" value="LAX">LAX (Los Angeles)</option>
@@ -108,7 +108,7 @@
                 </div>
                 </div>
                 <div class="input-grp">
-                    <button id="searchBtn" class="btn btn-primary flight">Show Flights</button>
+                    <button style="margin: 15px 50% 0" id="searchBtn" class="btn btn-primary flight">Show Flights</button>
                     <!-- <button id="searchBtn" type="button" class="btn btn-primary flight">Show Flights</button> -->
                 </div>
         </div>
@@ -127,6 +127,7 @@
         dateDisplay.innerHTML = "Current Date: " + currentDate;
         currDateDiv.appendChild(dateDisplay);
         console.log(sessionStorage.getItem("todaysDate"));
+
             function disableReturn(x) {
                 if(x==0) {
                     document.getElementById('oneWay').style.display='block'
@@ -162,10 +163,14 @@
             });
     
             document.getElementById("searchBtn").onclick=function(){
-                var flyFrom= $("#flying-from").val();
-                var flyTo= $("#flying-to").val();
+                var flyFrom = $("#flying-from").val();
+                var flyTo = $("#flying-to").val();
                 var departDate = $("#depart-date").val();
                 var returnDate = $("#return-date").val();
+                if (returnDate < departDate) {
+                    alert("Sorry, return date has to be greather than or equal to depart date");
+                    return false;
+                }
 
                 sessionStorage.setItem("flyingFrom", flyFrom);
                 sessionStorage.setItem("flyingTo", flyTo);
