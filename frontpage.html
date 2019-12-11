@@ -167,7 +167,7 @@
                 var flyTo = $("#flying-to").val();
                 var departDate = $("#depart-date").val();
                 var returnDate = $("#return-date").val();
-                if (returnDate < departDate) {
+                if (returnDate < departDate && returnDate!="") {
                     alert("Sorry, return date has to be greather than or equal to depart date");
                     return false;
                 }
