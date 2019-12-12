@@ -58,7 +58,6 @@ $("#signup-btn").click(function(){
 
           firebase.firestore().collection('users').doc(userUID).set({
           email: signupEmail,
-          password: signupPw,
           flightsBooked: []
           });
           //window.location.href="index.html"
