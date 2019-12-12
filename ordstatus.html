@@ -60,7 +60,7 @@
                 current_date += '<h2>' + date + '</h2>'
                 var updatedFlights=JSON.parse(localStorage.getItem("flights"));
                 // console.log(current_date)
-                for (var i = 0; i < flights.length; i++) {
+                for (var i = 0; i < updatedFlights.length; i++) {
                     if (updatedFlights[i].sourceAirport == "ORD" && updatedFlights[i].date == date) {
                         departure_data += '<tr>';
                         departure_data += '<td>' + updatedFlights[i].airline + '</td>';

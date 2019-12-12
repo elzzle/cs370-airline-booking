@@ -122,8 +122,8 @@
                 }
                 JSON.parse(localStorage.getItem("flights"));
                 uncancelFlight.onclick = function(){
-                    for(var k=0; k<flights.length; k++){
-                        flights2=JSON.parse(localStorage.getItem("flights"))
+                    flights2=JSON.parse(localStorage.getItem("flights"))
+                    for(var k=0; k<flights2.length; k++){
                         if(flights2[k].number == flightNumber){
                             flights2[k].status = "On Time";
                             localStorage.setItem("flights", JSON.stringify(flights2));
