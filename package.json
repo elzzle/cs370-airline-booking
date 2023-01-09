@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/elzzle/cs370-airline-booking#readme",
   "dependencies": {
-    "firebase-admin": "^8.8.0",
+    "firebase-admin": "^11.4.1",
     "passport": "^0.4.0"
   }
 }
